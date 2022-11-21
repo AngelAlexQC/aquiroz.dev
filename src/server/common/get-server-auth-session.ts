@@ -15,18 +15,5 @@ export const getServerAuthSession = async (ctx: {
     ctx.res,
     authOptions
   );
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
+  return session;
 };
