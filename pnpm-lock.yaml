@@ -16,6 +16,7 @@ specifiers:
   autoprefixer: ^10.4.7
   eslint: ^8.26.0
   eslint-config-next: 13.0.2
+  icons: ^1.0.0
   next: 13.0.2
   next-auth: ^4.15.1
   postcss: ^8.4.14
@@ -24,6 +25,7 @@ specifiers:
   prisma: ^4.5.0
   react: 18.2.0
   react-dom: 18.2.0
+  react-icons: 4.7.1
   superjson: 1.9.1
   tailwindcss: ^3.2.0
   typescript: ^4.8.4
@@ -37,10 +39,12 @@ dependencies:
   '@trpc/next': 10.0.0-rc.4_skfskd5lhpkyk3yzyrw6tb7uyi
   '@trpc/react-query': 10.0.0-rc.4_q2ykz5ry7uzzhix6pf4rsmetbu
   '@trpc/server': 10.0.0-rc.4
+  icons: 1.0.0
   next: 13.0.2_biqbaboplfbrettd7655fr4n2y
   next-auth: 4.17.0_pknogjuzx4bv7zxtatcb2ahtsq
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.7.1_react@18.2.0
   superjson: 1.9.1
   zod: 3.19.1
 
@@ -1482,6 +1486,11 @@ packages:
       function-bind: 1.1.1
     dev: true
 
+  /icons/1.0.0:
+    resolution: {integrity: sha512-7POum3AHKovjEEXg4ITL2opTzGjnN2UnUIhv5LsUX+SjKBsFMjRyANShrCubt0KQdNdcX2wAym+JXOt6LceuYA==}
+    deprecated: Package no longer supported. Contact support@npmjs.com for more info.
+    dev: false
+
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
@@ -2172,6 +2181,14 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-icons/4.7.1_react@18.2.0:
+    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /react-is/16.13.1:
