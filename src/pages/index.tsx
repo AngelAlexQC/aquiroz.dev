@@ -34,6 +34,7 @@ function Home({ articles = [] }: { articles: Article[] }) {
               <Link
                 href={article.url}
                 key={i}
+                target="_blank"
                 className="flex transform flex-col items-center justify-center gap-2 rounded-md p-4 shadow-md transition-all duration-500 ease-in-out hover:scale-105"
               >
                 <h3 className="text-lg font-semibold">
