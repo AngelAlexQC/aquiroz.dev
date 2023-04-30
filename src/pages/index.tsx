@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { AQuirozDev } from "../components";
 import type { Article } from "../types/Article";
+import Link from "next/link";
 
 export const getStaticProps = async () => {
   const url = "https://dev.to/api/articles?username=angelalexqc";
@@ -30,7 +31,8 @@ function Home({ articles = [] }: { articles: Article[] }) {
           <h2>Latest Posts</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article, i: number) => (
-              <div
+              <Link
+                href={article.url}
                 key={i}
                 className="flex transform flex-col items-center justify-center gap-2 rounded-md p-4 shadow-md transition-all duration-500 ease-in-out hover:scale-105"
               >
@@ -48,7 +50,7 @@ function Home({ articles = [] }: { articles: Article[] }) {
                     <>{article.description}</>
                   )}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
