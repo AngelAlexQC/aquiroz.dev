@@ -23,7 +23,7 @@ function Home({ articles = [] }: { articles: Article[] }) {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex h-full flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#009bff]  to-[#020024]">
+      <main className="flex h-full flex-col items-center overflow-hidden bg-gradient-to-b from-[#009bff]  to-[#020024]">
         <div className="container flex flex-col items-center justify-center gap-8 px-4 ">
           <div className="flex flex-col items-center gap-2">
             <AQuirozDev />
