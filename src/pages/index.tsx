@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { AQuirozDev } from "../components";
-const Home = () => {
+
+function Home() {
   return (
     <>
       <Head>
@@ -20,6 +21,6 @@ const Home = () => {
       </main>
     </>
   );
-};
+}
 
 export default Home;
