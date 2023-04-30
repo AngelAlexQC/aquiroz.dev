@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { AQuirozDev } from "../components";
-import { Article } from "./Article";
+import type { Article } from "../types/Article";
 
 export const getStaticProps = async () => {
   const url = "https://dev.to/api/articles?username=angelalexqc";
