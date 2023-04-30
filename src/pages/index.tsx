@@ -1,42 +1,6 @@
 import Head from "next/head";
 import { AQuirozDev } from "../components";
-
-interface Article {
-  type_of: string;
-  id: number;
-  title: string;
-  description: string;
-  readable_publish_date: string;
-  slug: string;
-  path: string;
-  url: string;
-  comments_count: number;
-  public_reactions_count: number;
-  collection_id: any;
-  published_timestamp: string;
-  positive_reactions_count: number;
-  cover_image: string;
-  social_image: string;
-  canonical_url: string;
-  created_at: string;
-  edited_at: string;
-  crossposted_at: any;
-  published_at: string;
-  last_comment_at: string;
-  reading_time_minutes: number;
-  tag_list: string[];
-  tags: string;
-  user: {
-    name: string;
-    username: string;
-    twitter_username: any;
-    github_username: string;
-    user_id: number;
-    website_url: string;
-    profile_image: string;
-    profile_image_90: string;
-  };
-}
+import { Article } from "./Article";
 
 export const getStaticProps = async () => {
   const url = "https://dev.to/api/articles?username=angelalexqc";
@@ -68,7 +32,7 @@ function Home({ articles = [] }: { articles: Article[] }) {
             {articles.map((article, i: number) => (
               <div
                 key={i}
-                className="flex flex-col items-center justify-center gap-2 rounded-md p-4 shadow-md"
+                className="flex transform flex-col items-center justify-center gap-2 rounded-md p-4 shadow-md transition-all duration-500 ease-in-out hover:scale-105"
               >
                 <h3 className="text-lg font-semibold">
                   {article.title.length > 50 ? (
