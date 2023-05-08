@@ -2,8 +2,28 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./AQuirozDev.module.css";
 // import dev.to, github, linkedin icons from react-icons
-import { FaDev, FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaDev, FaFilePdf, FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
+
+const links = [
+  {
+    icon: FaDev,
+    href: "https://dev.to/angelalexqc",
+  },
+  {
+    icon: FaGithub,
+    href: "https://github.com/angelalexqc",
+  },
+  {
+    icon: FaLinkedin,
+    href: "https://linkedin.com/in/aquirozdev",
+  },
+  {
+    icon: FaFilePdf,
+    href: "/documents/Ángel Quiroz.pdf",
+  },
+];
+
 export const AQuirozDev = () => {
   return (
     <main className={styles.main}>
@@ -33,36 +53,18 @@ export const AQuirozDev = () => {
           className={styles.avatar}
         />
         <ul>
-          <li>
-            <Link
-              href="https://dev.to/angelalexqc"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2"
-            >
-              <FaDev size="2rem" />
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="https://github.com/angelalexqc"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2"
-            >
-              <FaGithub size="2rem" />
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="https://linkedin.com/in/aquirozdev"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2"
-            >
-              <FaLinkedin size="2rem" />
-            </Link>
-          </li>
+          {links.map(({ icon: Icon, href }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Icon size="2rem" />
+              </Link>
+            </li>
+          ))}
         </ul>
         <Link
           href="mailto:aquirozdev@gmail.com"

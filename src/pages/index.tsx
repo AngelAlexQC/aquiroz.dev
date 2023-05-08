@@ -21,9 +21,9 @@ function Home({ articles = [] }: { articles: Article[] }) {
           name="description"
           content="Software Developer & Computer Systems Engineer"
         />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/img/logo.png" />
       </Head>
-      <main className="flex flex-col items-center md:justify-center md:h-full">
+      <main className="flex flex-col items-center md:h-full md:justify-center">
         <div className="container flex flex-col items-center justify-center gap-8 px-4 ">
           <div className="flex flex-col items-center gap-2">
             <AQuirozDev />
