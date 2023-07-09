@@ -43,5 +43,4 @@ yarn-error.log*
 # Lock files
 
 package-lock.json
-pnpm-lock.yaml
 yarn.lock
