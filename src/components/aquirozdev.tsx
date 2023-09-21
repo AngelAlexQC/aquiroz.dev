@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import styles from "./AQuirozDev.module.css";
+import styles from "./aquirozdev.module.css";
 // import dev.to, github, linkedin icons from react-icons
 import { FaDev, FaFilePdf, FaGithub, FaLinkedin } from "react-icons/fa";
 import { MdMail } from "react-icons/md";
@@ -59,8 +59,7 @@ export const AQuirozDev = () => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2"
-              >
+                className="flex items-center gap-2">
                 <Icon size="2rem" />
               </Link>
             </li>
@@ -70,8 +69,7 @@ export const AQuirozDev = () => {
           href="mailto:aquirozdev@gmail.com"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white no-underline transition hover:bg-white/20"
-        >
+          className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white no-underline transition hover:bg-white/20">
           <MdMail />
           <span>Contact me</span>
         </Link>
