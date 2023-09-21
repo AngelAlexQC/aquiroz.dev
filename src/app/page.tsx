@@ -47,6 +47,7 @@ async function getArticles() {
 
 export default async function Home() {
   const articles = await getArticles();
+
   return (
     <main className="flex flex-col items-center md:h-full md:justify-center">
       <div className="container flex flex-col items-center justify-center gap-8 px-4 ">
@@ -60,21 +61,12 @@ export default async function Home() {
               href={article.url}
               key={i}
               target="_blank"
-              className="flex transform flex-col items-center justify-center gap-2 rounded-md p-4 shadow-md transition-all duration-500 ease-in-out hover:scale-105">
-              <h3 className="text-lg font-semibold">
-                {article.title.length > 50 ? (
-                  <>{article.title.slice(0, 50)}...</>
-                ) : (
-                  <>{article.title}</>
-                )}
-              </h3>
-              <p className="text-sm text-gray-500">
-                {article.description.length > 100 ? (
-                  <>{article.description.slice(0, 100)}...</>
-                ) : (
-                  <>{article.description}</>
-                )}
+              className="flex dark:shadow-gray-600 transform flex-col gap-2 rounded-md p-4 shadow duration-300 ease-in-out hover:scale-95">
+              <h3 className="text-lg font-semibold">{article.title}</h3>
+              <p className="text-sm text-gray-500 mr-auto">
+                {new Date(article.published_at).toLocaleDateString()}
               </p>
+              <p className="text-sm text-gray-500">{article.description}</p>
             </Link>
           ))}
         </div>

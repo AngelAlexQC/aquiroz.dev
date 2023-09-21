@@ -28,7 +28,10 @@ export const AQuirozDev = () => {
   return (
     <main className={styles.main}>
       <section className={styles.intro}>
-        <h1>Ángel Quiroz</h1>
+        <div className="flex items-center gap-2">
+          <Image src="/img/logo.png" width="50" height="50" alt="Logo" />
+          <h1>Ángel Quiroz</h1>
+        </div>
         <h2>Full Stack Software Developer</h2>
         <p>
           I build software, focusing on web development. My main stack is
@@ -59,7 +62,7 @@ export const AQuirozDev = () => {
                 href={href}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2">
+                className="flex items-center gap-2 hover:scale-110 transition-transform duration-300 ease-in-out">
                 <Icon size="2rem" />
               </Link>
             </li>
@@ -69,7 +72,7 @@ export const AQuirozDev = () => {
           href="mailto:aquirozdev@gmail.com"
           target="_blank"
           rel="noreferrer"
-          className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 font-semibold text-white no-underline transition hover:bg-white/20">
+          className="flex items-center gap-2 rounded-full py-2 px-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 hover:scale-110 transition-transform duration-300 ease-in-out">
           <MdMail />
           <span>Contact me</span>
         </Link>
