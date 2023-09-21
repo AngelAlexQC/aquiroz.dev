@@ -1,7 +1,7 @@
 import AQuirozDev from "@/components/aquirozdev";
 import Link from "next/link";
 
-export interface Article {
+interface Article {
   type_of: string;
   id: number;
   title: string;
@@ -38,12 +38,12 @@ export interface Article {
   };
 }
 
-export const getArticles = async () => {
+async function getArticles() {
   const url = "https://dev.to/api/articles?username=angelalexqc";
   const res = await fetch(url);
   const data = (await res.json()) as Article[];
   return data;
-};
+}
 
 export default async function Home() {
   const articles = await getArticles();
