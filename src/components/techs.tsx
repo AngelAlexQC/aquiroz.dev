@@ -3,6 +3,9 @@ export const techs = [
   "TypeScript",
   "React",
   "Next.js",
+  "Angular",
   "Node.js",
   "Nest.js",
+  "PHP",
+  "Laravel",
 ];
