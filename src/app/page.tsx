@@ -20,7 +20,7 @@ export default async function Home() {
       <AQuirozDev />
       <section className="space-y-4">
         <div>
-          <h3 className="text-2xl font-semibold mb-4">Articles</h3>
+          <h3 className="text-2xl font-semibold mb-4">Latest Articles</h3>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {articles.map((article, i: number) => (
               <Link
