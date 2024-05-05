@@ -8,4 +8,6 @@ export const techs = [
   "Nest.js",
   "PHP",
   "Laravel",
+  "Yii2 ",
+  "Docker",
 ];

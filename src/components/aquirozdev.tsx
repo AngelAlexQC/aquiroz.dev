@@ -36,9 +36,7 @@ export async function AQuirozDev() {
           />
           <h1 className="text-xl font-bold">Ángel Quiroz</h1>
         </div>
-        <h2 className="font-semibold text-foreground">
-          Full Stack Software Developer
-        </h2>
+        <h2 className="font-semibold text-foreground">Software Engineer</h2>
 
         <ul className="flex flex-row gap-2 p-2">
           {links.map(({ icon: Icon, href, title }, i) => (
