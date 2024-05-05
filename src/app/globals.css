@@ -70,6 +70,13 @@
   * {
     @apply border-border;
   }
+
+  html,
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -81,10 +88,4 @@
   margin-left: auto;
   padding-right: 2rem;
   padding-left: 2rem;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
 }

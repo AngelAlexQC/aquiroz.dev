@@ -20,7 +20,7 @@ export default function RootLayout({
         <link rel="icon" href="/img/logo.png" type="image/x-icon" />
       </head>
 
-      <body className="flex flex-col min-h-screen justify-center items-center">
+      <body>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
