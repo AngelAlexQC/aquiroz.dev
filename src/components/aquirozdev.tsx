@@ -10,7 +10,7 @@ import { techs } from "./techs";
 
 export async function AQuirozDev() {
   return (
-    <div className="flex flex-col items-center sticky top-0 py-4">
+    <div className="flex flex-col items-center md:sticky md:top-0 py-4">
       <section className="flex flex-col items-center ">
         <Image
           alt="Ángel Quiroz"
