@@ -18,7 +18,7 @@ export const links = [
   },
   {
     icon: FaFilePdf,
-    href: "/documents/Ángel Quiroz.pdf",
+    href: "/documents/Ángel Quiroz CV - FullStack Developer & Tech lead.pdf",
     title: "CV",
   },
 ];
