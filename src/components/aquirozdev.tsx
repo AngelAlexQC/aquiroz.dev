@@ -46,11 +46,12 @@ export async function AQuirozDev() {
                 target="_blank"
                 rel="noreferrer"
                 title={title}
-                className={buttonVariants({
-                  size: "icon",
+                className={`${buttonVariants({
+                  size: "default",
                   variant: "outline",
-                })}>
-                <Icon size="2rem" />
+                })} ${styles.link}`}>
+                <Icon size="1.5rem" />
+                <span>{title}</span>
               </Link>
             </li>
           ))}
