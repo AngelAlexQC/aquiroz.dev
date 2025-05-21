@@ -56,9 +56,10 @@
   list-style: none;
   padding: 0;
   display: flex;
+  flex-direction: column;
   gap: 1rem;
-  flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .link {
@@ -66,9 +67,20 @@
   align-items: center;
   gap: 0.5rem;
   white-space: nowrap;
+  width: 100%;
+  justify-content: center;
 }
 
 @media (min-width: 768px) {
+  .links ul {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .link {
+    width: auto;
+  }
   .link span {
     display: none;
   }

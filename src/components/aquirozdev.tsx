@@ -3,6 +3,7 @@ import Link from "next/link";
 // import dev.to, github, linkedin icons from react-icons
 import { FaEnvelope } from "react-icons/fa";
 import { buttonVariants } from "./ui/button";
+import styles from "./aquirozdev.module.css";
 import { ModeToggle } from "./mode-toogle";
 import { Badge } from "./ui/badge";
 import { links } from "./links";
