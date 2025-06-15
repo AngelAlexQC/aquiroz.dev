@@ -29,26 +29,68 @@ const skillCategories = [
 ];
 ---
 
-<section id="skills" class="py-20 bg-white">
-  <div class="max-w-6xl mx-auto px-4">
-    <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">
-      {lang === 'es' ? 'Aptitudes Técnicas' : 'Technical Skills'}
-    </h2>
+<section id="skills" class="py-24 bg-white relative overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute top-20 right-0 w-72 h-72 bg-gradient-to-l from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+  
+  <div class="max-w-7xl mx-auto px-4 relative">
+    <div class="text-center mb-16">
+      <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">
+        {lang === 'es' ? 'Tecnologías y herramientas' : 'Technologies & tools'}
+      </span>
+      <h2 class="text-5xl font-bold mt-4 mb-6">
+        <span class="text-gray-900">{lang === 'es' ? 'Aptitudes' : 'Technical'}</span>
+        <span class="gradient-text"> {lang === 'es' ? 'Técnicas' : 'Skills'}</span>
+      </h2>
+    </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {skillCategories.map((category) => (
-        <div class="bg-gray-50 rounded-lg p-6">
-          <h3 class="text-xl font-semibold text-gray-900 mb-4">{category.title}</h3>
-          <ul class="space-y-2">
+      {skillCategories.map((category, index) => (
+        <div class="group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200">
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+            {index === 0 && '🎯'}
+            {index === 1 && '⚙️'}
+            {index === 2 && '🎨'}
+            {index === 3 && '☁️'}
+          </div>
+          
+          <h3 class="text-xl font-bold text-gray-900 mb-6 group-hover:text-blue-600 transition-colors">
+            {category.title}
+          </h3>
+          
+          <ul class="space-y-3">
             {category.skills.map((skill) => (
-              <li class="text-gray-700 flex items-center">
-                <span class="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
-                {skill}
+              <li class="flex items-center text-gray-700 group-hover:text-gray-900 transition-colors">
+                <div class="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mr-3 group-hover:scale-125 transition-transform"></div>
+                <span class="font-medium">{skill}</span>
               </li>
             ))}
           </ul>
         </div>
       ))}
+    </div>
+    
+    <!-- Additional tech logos section -->
+    <div class="mt-20 text-center">
+      <h3 class="text-2xl font-bold text-gray-900 mb-8">
+        {lang === 'es' ? 'Tecnologías con las que trabajo' : 'Technologies I work with'}
+      </h3>
+      <div class="flex flex-wrap justify-center items-center gap-8 opacity-60 hover:opacity-100 transition-opacity">
+        {/* Add technology logos here */}
+        <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-colors">
+          <span class="font-mono text-lg font-bold">TypeScript</span>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-colors">
+          <span class="font-mono text-lg font-bold">React</span>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-colors">
+          <span class="font-mono text-lg font-bold">Node.js</span>
+        </div>
+        <div class="bg-gray-100 rounded-lg p-4 hover:bg-gray-200 transition-colors">
+          <span class="font-mono text-lg font-bold">Docker</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
