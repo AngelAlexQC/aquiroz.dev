@@ -1,0 +1,74 @@
+---
+import Navigation from "../components/Navigation.astro";
+import "../styles/global.css";
+export interface Props {
+  title: string;
+  lang: "es" | "en";
+}
+
+const { title, lang } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="description"
+      content={lang === "es"
+        ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
+        : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership"}
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content={lang === "es"
+        ? "Ingeniero de Software Senior especializado en desarrollo full-stack"
+        : "Senior Software Engineer specialized in full-stack development"}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+
+    <!-- Alternate languages -->
+    <link
+      rel="alternate"
+      hreflang="es"
+      href={`https://aquiroz.dev/es${currentPath.replace("/en", "").replace("/es", "")}`}
+    />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={`https://aquiroz.dev/en${currentPath.replace("/en", "").replace("/es", "")}`}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={`https://aquiroz.dev/es${currentPath.replace("/en", "").replace("/es", "")}`}
+    />
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <Navigation lang={lang} />
+    <main>
+      <slot />
+    </main>
+
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <p>
+          &copy; 2024 Ángel Quiroz. {
+            lang === "es"
+              ? "Todos los derechos reservados."
+              : "All rights reserved."
+          }
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

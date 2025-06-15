@@ -1,0 +1,54 @@
+---
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const skillCategories = [
+  {
+    title: lang === 'es' ? 'Desarrollo & Arquitectura' : 'Development & Architecture',
+    skills: [
+      lang === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development',
+      lang === 'es' ? 'Arquitectura de Software' : 'Software Architecture',
+      lang === 'es' ? 'Liderazgo Técnico' : 'Technical Leadership'
+    ]
+  },
+  {
+    title: 'Backend',
+    skills: ['PHP (Yii2, Laravel)', 'TypeScript (NestJS)', 'Node.js']
+  },
+  {
+    title: 'Frontend',
+    skills: ['React', 'Next.js', 'Angular', 'Vue.js']
+  },
+  {
+    title: 'DevOps & Cloud',
+    skills: ['Docker', 'AWS', 'CI/CD', 'GitHub Actions']
+  }
+];
+---
+
+<section id="skills" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">
+      {lang === 'es' ? 'Aptitudes Técnicas' : 'Technical Skills'}
+    </h2>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {skillCategories.map((category) => (
+        <div class="bg-gray-50 rounded-lg p-6">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">{category.title}</h3>
+          <ul class="space-y-2">
+            {category.skills.map((skill) => (
+              <li class="text-gray-700 flex items-center">
+                <span class="w-2 h-2 bg-blue-600 rounded-full mr-3"></span>
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+export interface Props {
+  lang: 'es' | 'en';
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="about" class="py-20 bg-white">
+  <div class="max-w-6xl mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">
+      {lang === 'es' ? 'Acerca de Mí' : 'About Me'}
+    </h2>
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gray-50 rounded-lg p-8 shadow-sm">
+        <p class="text-lg text-gray-700 leading-relaxed">
+          {lang === 'es' 
+            ? 'Ingeniero de Software con más de 7 años de experiencia profesional construyendo sistemas robustos, modulares y escalables. Especializado en desarrollo full-stack (backend + frontend), arquitectura limpia, liderazgo técnico e integración de sistemas. Apuesto por la automatización DevOps, la mejora continua y la entrega de soluciones de alto impacto a nivel internacional.'
+            : 'Senior Software Engineer with over 7 years of experience building robust, modular, and scalable systems. Specialized in full-stack development (backend + frontend), clean architecture, technical leadership, and system integration. I embrace DevOps automation, continuous improvement, and delivering high-impact solutions on a global scale.'
+          }
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
