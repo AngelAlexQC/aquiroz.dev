@@ -55,20 +55,34 @@ const baseUrl = isSpanish ? "/es" : "";
         </a>
       </div>
 
-      <div class="hidden md:flex items-center space-x-4">
-        <a href={`${baseUrl}#about`} class={customClasses.navLink}>
+      <div class="hidden md:flex items-center space-x-4 relative">
+        <!-- Indicador deslizante de fondo -->
+        <div 
+          id="nav-indicator" 
+          class="absolute h-full bg-gradient-to-r from-blue-100 to-purple-100 rounded-lg transition-all duration-500 ease-out opacity-0 -z-10"
+          style="width: 0px; left: 0px;">
+        </div>
+        
+        <!-- Línea deslizante debajo -->
+        <div 
+          id="nav-underline" 
+          class="absolute bottom-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transition-all duration-500 ease-out opacity-0"
+          style="width: 0px; left: 0px;">
+        </div>
+
+        <a href={`${baseUrl}#about`} class="nav-link relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="about">
           {lang === "es" ? "Acerca de" : "About"}
         </a>
-        <a href={`${baseUrl}#experience`} class={customClasses.navLink}>
+        <a href={`${baseUrl}#experience`} class="nav-link relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="experience">
           {lang === "es" ? "Experiencia" : "Experience"}
         </a>
-        <a href={`${baseUrl}#skills`} class={customClasses.navLink}>
+        <a href={`${baseUrl}#skills`} class="nav-link relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="skills">
           {lang === "es" ? "Aptitudes" : "Skills"}
         </a>
-        <a href={`${baseUrl}#projects`} class={customClasses.navLink}>
+        <a href={`${baseUrl}#projects`} class="nav-link relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="projects">
           {lang === "es" ? "Proyectos" : "Projects"}
         </a>
-        <a href={`${baseUrl}#contact`} class={customClasses.navLink}>
+        <a href={`${baseUrl}#contact`} class="nav-link relative px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="contact">
           {lang === "es" ? "Contacto" : "Contact"}
         </a>
 
@@ -102,27 +116,32 @@ const baseUrl = isSpanish ? "/es" : "";
       <div class="space-y-2">
         <a
           href={`/${lang}/#about`}
-          class={`block ${customClasses.navLink} py-2`}>
+          class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+          data-section="about">
           {lang === "es" ? "Acerca de" : "About"}
         </a>
         <a
           href={`/${lang}/#experience`}
-          class={`block ${customClasses.navLink} py-2`}>
+          class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+          data-section="experience">
           {lang === "es" ? "Experiencia" : "Experience"}
         </a>
         <a
           href={`/${lang}/#skills`}
-          class={`block ${customClasses.navLink} py-2`}>
+          class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+          data-section="skills">
           {lang === "es" ? "Aptitudes" : "Skills"}
         </a>
         <a
           href={`/${lang}/#projects`}
-          class={`block ${customClasses.navLink} py-2`}>
+          class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+          data-section="projects">
           {lang === "es" ? "Proyectos" : "Projects"}
         </a>
         <a
           href={`/${lang}/#contact`}
-          class={`block ${customClasses.navLink} py-2`}>
+          class="nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300"
+          data-section="contact">
           {lang === "es" ? "Contacto" : "Contact"}
         </a>
         <a
@@ -135,6 +154,12 @@ const baseUrl = isSpanish ? "/es" : "";
   </div>
 
   <script>
+    // Variables globales para las animaciones
+    let lastScrollY = 0;
+    let ticking = false;
+    let activeSection = '';
+    let sections: { id: string; element: HTMLElement; top: number; bottom: number }[] = [];
+
     // Mobile menu toggle
     document
       .getElementById("mobile-menu-button")
@@ -143,7 +168,124 @@ const baseUrl = isSpanish ? "/es" : "";
         menu?.classList.toggle("hidden");
       });
 
-    // Smooth scroll for navigation links
+    // Función para animar los indicadores de navegación activa
+    function animateNavIndicators(targetLink: HTMLElement) {
+      const indicator = document.getElementById('nav-indicator');
+      const underline = document.getElementById('nav-underline');
+      const navContainer = targetLink.closest('.relative');
+      
+      if (!indicator || !underline || !navContainer) return;
+
+      const containerRect = navContainer.getBoundingClientRect();
+      const linkRect = targetLink.getBoundingClientRect();
+      
+      // Calcular posición relativa al contenedor
+      const left = linkRect.left - containerRect.left;
+      const width = linkRect.width;
+      
+      // Animar el indicador de fondo
+      indicator.style.left = `${left}px`;
+      indicator.style.width = `${width}px`;
+      indicator.classList.remove('opacity-0');
+      indicator.classList.add('opacity-100');
+      
+      // Animar la línea inferior
+      underline.style.left = `${left}px`;
+      underline.style.width = `${width}px`;
+      underline.classList.remove('opacity-0');
+      underline.classList.add('opacity-100');
+      
+      // Actualizar estilos de los enlaces
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-blue-600', 'font-semibold');
+        link.classList.add('text-gray-700');
+      });
+      
+      targetLink.classList.remove('text-gray-700');
+      targetLink.classList.add('text-blue-600', 'font-semibold');
+    }
+
+    // Función para ocultar los indicadores
+    function hideNavIndicators() {
+      const indicator = document.getElementById('nav-indicator');
+      const underline = document.getElementById('nav-underline');
+      
+      if (indicator) {
+        indicator.classList.remove('opacity-100');
+        indicator.classList.add('opacity-0');
+      }
+      
+      if (underline) {
+        underline.classList.remove('opacity-100');
+        underline.classList.add('opacity-0');
+      }
+      
+      // Resetear estilos de los enlaces
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-blue-600', 'font-semibold');
+        link.classList.add('text-gray-700');
+      });
+    }
+
+    // Función para detectar la sección activa basada en el scroll
+    function detectActiveSection() {
+      const scrollPosition = window.scrollY + 100; // Offset para detección temprana
+      
+      let currentActiveSection = '';
+      
+      // Verificar cada sección
+      for (const section of sections) {
+        if (scrollPosition >= section.top && scrollPosition < section.bottom) {
+          currentActiveSection = section.id;
+          break;
+        }
+      }
+      
+      // Si estamos en la parte superior de la página, no hay sección activa
+      if (window.scrollY < window.innerHeight * 0.1) {
+        currentActiveSection = '';
+      }
+      
+      // Solo actualizar si cambió la sección activa
+      if (currentActiveSection !== activeSection) {
+        activeSection = currentActiveSection;
+        updateActiveNavLink();
+      }
+    }
+
+    // Función para actualizar el enlace activo en la navegación
+    function updateActiveNavLink() {
+      if (!activeSection) {
+        hideNavIndicators();
+        return;
+      }
+      
+      const activeLink = document.querySelector(`.nav-link[data-section="${activeSection}"]`) as HTMLElement;
+      if (activeLink && window.innerWidth >= 768) { // Solo en desktop
+        animateNavIndicators(activeLink);
+      }
+    }
+
+    // Función para calcular las posiciones de las secciones
+    function calculateSectionPositions() {
+      sections = [];
+      const sectionIds = ['about', 'experience', 'skills', 'projects', 'contact'];
+      
+      sectionIds.forEach((id, index) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const top = rect.top + window.scrollY - 100; // Offset para detección
+          const bottom = index < sectionIds.length - 1 
+            ? (document.getElementById(sectionIds[index + 1])?.getBoundingClientRect().top || 0) + window.scrollY - 100
+            : document.body.scrollHeight;
+          
+          sections.push({ id, element, top, bottom });
+        }
+      });
+    }
+
+    // Smooth scroll para enlaces de navegación
     function initSmoothScroll() {
       // Handle logo link behavior
       const logoLink = document.getElementById('logo-link');
@@ -167,6 +309,12 @@ const baseUrl = isSpanish ? "/es" : "";
             
             // Update URL to remove any hash
             history.pushState(null, '', href);
+            
+            // Recalcular secciones y detectar activa
+            setTimeout(() => {
+              calculateSectionPositions();
+              detectActiveSection();
+            }, 100);
           } else {
             // Different page - navigate normally
             window.location.href = href;
@@ -174,8 +322,8 @@ const baseUrl = isSpanish ? "/es" : "";
         });
       }
       
-      // Get all other navigation links that point to sections
-      const navLinks = document.querySelectorAll('a[href*="#"]:not(#logo-link)');
+      // Get all navigation links that point to sections
+      const navLinks = document.querySelectorAll('.nav-link[data-section]');
       
       navLinks.forEach(link => {
         link.addEventListener('click', function(e: Event) {
@@ -206,6 +354,18 @@ const baseUrl = isSpanish ? "/es" : "";
               
               // Update URL without causing a jump
               history.pushState(null, '', href);
+              
+              // Actualizar la sección activa inmediatamente para feedback visual rápido
+              activeSection = targetId;
+              if (window.innerWidth >= 768) {
+                animateNavIndicators(target as HTMLElement);
+              }
+              
+              // Recalcular posiciones después del scroll
+              setTimeout(() => {
+                calculateSectionPositions();
+                detectActiveSection();
+              }, 600); // Tiempo después de que termine la animación de scroll
             }
           }
         });
@@ -213,9 +373,6 @@ const baseUrl = isSpanish ? "/es" : "";
     }
 
     // Scroll-triggered navigation transformation
-    let lastScrollY = 0;
-    let ticking = false;
-
     function updateNavigation() {
       const currentScrollY = window.scrollY;
       const nav = document.getElementById("main-nav");
@@ -266,6 +423,9 @@ const baseUrl = isSpanish ? "/es" : "";
         navSubtitle?.classList.add("translate-y-2");
       }
 
+      // Detectar sección activa
+      detectActiveSection();
+
       lastScrollY = currentScrollY;
       ticking = false;
     }
@@ -277,18 +437,39 @@ const baseUrl = isSpanish ? "/es" : "";
       }
     }
 
+    // Función para manejar cambios de tamaño de ventana
+    function handleResize() {
+      // Recalcular posiciones de secciones
+      calculateSectionPositions();
+      
+      // Si estamos en móvil, ocultar indicadores
+      if (window.innerWidth < 768) {
+        hideNavIndicators();
+      } else {
+        // Si volvemos a desktop, detectar sección activa
+        detectActiveSection();
+      }
+    }
+
     // Initialize everything when DOM is loaded
     document.addEventListener('DOMContentLoaded', function() {
       initSmoothScroll();
+      calculateSectionPositions();
       updateNavigation();
     });
 
     // Listen for scroll events
     window.addEventListener("scroll", requestTick, { passive: true });
 
-    // Also initialize immediately in case DOMContentLoaded already fired
+    // Listen for resize events
+    window.addEventListener("resize", handleResize, { passive: true });
+
+    // También inicializar inmediatamente por si DOMContentLoaded ya se disparó
     initSmoothScroll();
-    updateNavigation();
+    setTimeout(() => {
+      calculateSectionPositions();
+      updateNavigation();
+    }, 100);
   </script>
 
   <style>
@@ -306,6 +487,69 @@ const baseUrl = isSpanish ? "/es" : "";
     #nav-subtitle,
     #nav-name-container {
       transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* Estilos para los indicadores de navegación activa */
+    #nav-indicator {
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 8px;
+    }
+
+    #nav-underline {
+      transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border-radius: 2px;
+    }
+
+    /* Efectos hover para los enlaces de navegación */
+    .nav-link {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Efecto de pulso sutil para el enlace activo */
+    .nav-link.text-blue-600 {
+      animation: subtle-pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes subtle-pulse {
+      0%, 100% {
+        text-shadow: 0 0 0 rgba(59, 130, 246, 0);
+      }
+      50% {
+        text-shadow: 0 0 8px rgba(59, 130, 246, 0.2);
+      }
+    }
+
+    /* Mejorar la transición del indicador de fondo */
+    #nav-indicator {
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(59, 130, 246, 0.1);
+    }
+
+    /* Efecto adicional para el underline */
+    #nav-underline {
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #nav-indicator,
+      #nav-underline {
+        display: none;
+      }
+    }
+
+    /* Animación suave para cambios de estado */
+    .nav-link {
+      transition: 
+        color 0.3s ease,
+        font-weight 0.3s ease,
+        transform 0.3s ease,
+        text-shadow 0.3s ease;
     }
   </style>
 </nav>
