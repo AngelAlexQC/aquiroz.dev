@@ -3,6 +3,7 @@ import { FiCode } from 'react-icons/fi';
 import { HiOutlineServer } from 'react-icons/hi';
 import { RiComputerLine } from 'react-icons/ri';
 import { AiOutlineCloud } from 'react-icons/ai';
+import { t } from '../utils/translations';
 
 export interface Props {
   lang: 'es' | 'en';
@@ -12,19 +13,19 @@ const { lang } = Astro.props;
 
 const skillCategories = [
   {
-    title: lang === 'es' ? 'Desarrollo & Arquitectura' : 'Development & Architecture',
+    title: t('skills.development', lang),
     Icon: FiCode,
     skills: [
       {
-        name: lang === 'es' ? 'Desarrollo Full Stack' : 'Full Stack Development',
+        name: t('skills.fullstack', lang),
         icon: `<img src="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/layers-intersect.svg" alt="Full Stack" class="w-6 h-6" />`
       },
       {
-        name: lang === 'es' ? 'Arquitectura de Software' : 'Software Architecture',
+        name: t('skills.architecture', lang),
         icon: `<img src="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/sitemap.svg" alt="Architecture" class="w-6 h-6" />`
       },
       {
-        name: lang === 'es' ? 'Liderazgo Técnico' : 'Technical Leadership',
+        name: t('skills.leadership', lang),
         icon: `<img src="https://cdn.jsdelivr.net/npm/@tabler/icons@2.40.0/icons/chart-treemap.svg" alt="Leadership" class="w-6 h-6" />`
       }
     ]
@@ -93,11 +94,11 @@ const skillCategories = [
   <div class="max-w-7xl mx-auto px-4 relative">
     <div class="text-center mb-16">
       <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">
-        {lang === 'es' ? 'Tecnologías y herramientas' : 'Technologies & tools'}
+        {t('skills.subtitle', lang)}
       </span>
       <h2 class="text-5xl font-bold mt-4 mb-6">
-        <span class="text-gray-900">{lang === 'es' ? 'Aptitudes' : 'Technical'}</span>
-        <span class="gradient-text"> {lang === 'es' ? 'Técnicas' : 'Skills'}</span>
+        <span class="text-gray-900">{t('skills.title', lang).split(' ')[0]}</span>
+        <span class="gradient-text"> {t('skills.title', lang).split(' ').slice(1).join(' ')}</span>
       </h2>
     </div>
     

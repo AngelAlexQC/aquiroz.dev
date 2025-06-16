@@ -1,6 +1,8 @@
 ---
+import { t } from '../utils/translations';
+
 export interface Props {
-  lang: "es" | "en";
+  lang: 'es' | 'en';
 }
 
 const { lang } = Astro.props;
@@ -45,11 +47,7 @@ const { lang } = Astro.props;
       <div class="h-16 mb-8 animate-fade-up" style="animation-delay: 0.4s;">
         <p class="text-xl md:text-2xl text-gray-600 font-medium">
           <span class="font-mono text-blue-600">&gt;</span>
-          {
-            lang === "es"
-              ? "Ingeniero de Software Senior | Full Stack & Tech Lead"
-              : "Senior Software Engineer | Full Stack & Tech Lead"
-          }
+          {t('hero.title', lang)}
           <span class="animate-pulse">|</span>
         </p>
         <p class="text-lg text-gray-500 mt-2">
@@ -66,7 +64,7 @@ const { lang } = Astro.props;
         class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up"
         style="animation-delay: 0.6s;">
         <a
-          href={lang === "es" ? "/cv-es.pdf" : "/cv-en.pdf"}
+          href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'}
           download
           class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
           <svg
@@ -81,7 +79,7 @@ const { lang } = Astro.props;
               d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             ></path>
           </svg>
-          <span>{lang === "es" ? "Descargar CV" : "Download CV"}</span>
+          <span>{t('hero.download_cv', lang)}</span>
         </a>
 
         <a
@@ -99,7 +97,7 @@ const { lang } = Astro.props;
               d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             ></path>
           </svg>
-          <span>{lang === "es" ? "Contactarme" : "Contact Me"}</span>
+          <span>{t('hero.contact_me', lang)}</span>
         </a>
       </div>
 
@@ -159,5 +157,7 @@ const { lang } = Astro.props;
       stroke-linejoin="round"
       stroke-width="2"
       d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+  </svg>
+</div>
   </svg>
 </div>

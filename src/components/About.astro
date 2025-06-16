@@ -1,6 +1,8 @@
 ---
+import { t } from '../utils/translations';
+
 export interface Props {
-  lang: "es" | "en";
+  lang: 'es' | 'en';
 }
 
 const { lang } = Astro.props;
@@ -19,10 +21,7 @@ const { lang } = Astro.props;
         {lang === "es" ? "Conóceme mejor" : "Get to know me"}
       </span>
       <h2 class="text-5xl font-bold mt-4 mb-6">
-        <span class="gradient-text"
-          >{lang === "es" ? "Acerca de" : "About"}</span
-        >
-        <span class="text-gray-900">{lang === "es" ? "Mí" : "Me"}</span>
+        <span class="gradient-text">{t('about.title', lang)}</span>
       </h2>
     </div>
 
@@ -30,11 +29,7 @@ const { lang } = Astro.props;
       <!-- Text Content -->
       <div class="space-y-6">
         <p class="text-lg text-gray-700 leading-relaxed">
-          {
-            lang === "es"
-              ? "Ingeniero de Software con más de 7 años de experiencia profesional construyendo sistemas robustos, modulares y escalables. Especializado en desarrollo full-stack (backend + frontend), arquitectura limpia, liderazgo técnico e integración de sistemas. Apuesto por la automatización DevOps, la mejora continua y la entrega de soluciones de alto impacto a nivel internacional."
-              : "Senior Software Engineer with over 7 years of experience building robust, modular, and scalable systems. Specialized in full-stack development (backend + frontend), clean architecture, technical leadership, and system integration. I embrace DevOps automation, continuous improvement, and delivering high-impact solutions on a global scale."
-          }
+          {t('about.description', lang)}
         </p>
 
         <!-- Key highlights -->
@@ -137,6 +132,11 @@ const { lang } = Astro.props;
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
         </div>
       </div>
     </div>
