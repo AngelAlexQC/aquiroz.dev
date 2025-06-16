@@ -22,7 +22,7 @@ const baseUrl = isSpanish ? "/es" : "";
     <div class="flex justify-between items-center h-16">
       <div class="flex items-center space-x-2 relative">
         <!-- Main navigation link that includes logo, avatar and name -->
-        <a href={baseUrl || "/"} class="flex items-center space-x-2 relative">
+        <a href={baseUrl || "/"} class="flex items-center space-x-2 relative" id="logo-link">
           <!-- Logo icon - always visible, moves smoothly to the right -->
           <div
             id="nav-logo"
@@ -143,6 +143,75 @@ const baseUrl = isSpanish ? "/es" : "";
         menu?.classList.toggle("hidden");
       });
 
+    // Smooth scroll for navigation links
+    function initSmoothScroll() {
+      // Handle logo link behavior
+      const logoLink = document.getElementById('logo-link');
+      if (logoLink) {
+        logoLink.addEventListener('click', function(e: Event) {
+          e.preventDefault();
+          const target = e.currentTarget as HTMLAnchorElement;
+          const href = target.getAttribute('href') || '/';
+          
+          // Get current path (without hash)
+          const currentPath = window.location.pathname;
+          const targetPath = new URL(href, window.location.origin).pathname;
+          
+          // Check if we're on the same page
+          if (currentPath === targetPath) {
+            // Same page - smooth scroll to top
+            window.scrollTo({
+              top: 0,
+              behavior: 'smooth'
+            });
+            
+            // Update URL to remove any hash
+            history.pushState(null, '', href);
+          } else {
+            // Different page - navigate normally
+            window.location.href = href;
+          }
+        });
+      }
+      
+      // Get all other navigation links that point to sections
+      const navLinks = document.querySelectorAll('a[href*="#"]:not(#logo-link)');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e: Event) {
+          const target = e.currentTarget as HTMLAnchorElement;
+          const href = target.getAttribute('href');
+          
+          // Check if it's a hash link (section link)
+          if (href && href.includes('#')) {
+            const targetId = href.split('#')[1];
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              e.preventDefault();
+              
+              // Close mobile menu if open
+              const mobileMenu = document.getElementById("mobile-menu");
+              mobileMenu?.classList.add("hidden");
+              
+              // Calculate offset for fixed navigation
+              const navHeight = document.getElementById("main-nav")?.offsetHeight || 64;
+              const targetPosition = targetElement.offsetTop - navHeight;
+              
+              // Smooth scroll to target
+              window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+              });
+              
+              // Update URL without causing a jump
+              history.pushState(null, '', href);
+            }
+          }
+        });
+      });
+    }
+
     // Scroll-triggered navigation transformation
     let lastScrollY = 0;
     let ticking = false;
@@ -208,10 +277,17 @@ const baseUrl = isSpanish ? "/es" : "";
       }
     }
 
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initSmoothScroll();
+      updateNavigation();
+    });
+
     // Listen for scroll events
     window.addEventListener("scroll", requestTick, { passive: true });
 
-    // Initial check
+    // Also initialize immediately in case DOMContentLoaded already fired
+    initSmoothScroll();
     updateNavigation();
   </script>
 
