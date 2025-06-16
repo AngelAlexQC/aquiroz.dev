@@ -1,4 +1,6 @@
 ---
+import { experienceDates, formatPeriod } from "../utils/dates";
+
 export interface Props {
   lang: 'es' | 'en';
 }
@@ -9,7 +11,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Líder Técnico' : 'Technical Lead',
     company: 'Libélula Soft',
-    period: lang === 'es' ? 'Feb 2024 – Presente' : 'Feb 2024 – Present',
+    period: formatPeriod(experienceDates.libelulaStart, null, lang),
     description: lang === 'es' 
       ? 'Lidero proyectos de sistemas empresariales en PHP (Yii2), diseño de APIs y automatización DevOps. Superviso calidad de código y mentorización de equipos de 5+ desarrolladores. Colaboro con stakeholders para entregas a tiempo y dentro de presupuesto.'
       : 'Lead enterprise systems projects in PHP (Yii2), API design and DevOps automation. Supervise code quality and mentor teams of 5+ developers. Collaborate with stakeholders for timely and budget-compliant deliveries.'
@@ -17,7 +19,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Ingeniero Fullstack & Backend' : 'Fullstack & Backend Engineer',
     company: 'Freelance',
-    period: lang === 'es' ? 'May 2019 – Presente' : 'May 2019 – Present',
+    period: formatPeriod(experienceDates.freelanceStart, null, lang),
     description: lang === 'es' 
       ? 'Diseño e implemento soluciones personalizadas con NestJS, monorepos y empaquetado NPM. Automatizo infraestructuras CI/CD y pipelines de despliegue. Entrego proyectos de alto impacto para clientes de EE. UU., México y Ecuador.'
       : 'Design and implement custom solutions with NestJS, monorepos and NPM packaging. Automate CI/CD infrastructures and deployment pipelines. Deliver high-impact projects for clients from the US, Mexico and Ecuador.'
@@ -25,7 +27,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Líder Técnico / Desarrollador Full Stack' : 'Technical Lead / Full Stack Developer',
     company: 'Edgebound',
-    period: lang === 'es' ? 'Jul 2022 – Abr 2023' : 'Jul 2022 – Apr 2023',
+    period: formatPeriod(experienceDates.edgeboundStart, experienceDates.edgeboundEnd, lang),
     description: lang === 'es' 
       ? 'Migré plataformas a Next.js, mejorando rendimiento y mantenibilidad. Desarrollé microservicios con RabbitMQ e integré HCL Commerce. Implementé pipelines CI/CD y estándares de calidad de código.'
       : 'Migrated platforms to Next.js, improving performance and maintainability. Developed microservices with RabbitMQ and integrated HCL Commerce. Implemented CI/CD pipelines and code quality standards.'
@@ -33,7 +35,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Desarrollador Full Stack' : 'Full Stack Developer',
     company: 'APS',
-    period: lang === 'es' ? 'Nov 2021 – Jul 2022' : 'Nov 2021 – Jul 2022',
+    period: formatPeriod(experienceDates.apsStart, experienceDates.apsEnd, lang),
     description: lang === 'es' 
       ? 'Desarrollé funcionalidades en VueJS, NextJS y Ruby on Rails. Lideré un proyecto frontend con Next.js y arquitectura escalable. Mejoré flujos de desarrollo con GitHub Actions y ESLint.'
       : 'Developed features in VueJS, NextJS and Ruby on Rails. Led a frontend project with Next.js and scalable architecture. Improved development workflows with GitHub Actions and ESLint.'
@@ -41,7 +43,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Desarrollador Full Stack' : 'Full Stack Developer',
     company: 'GAD Portoviejo',
-    period: lang === 'es' ? 'Feb 2020 – Sep 2021' : 'Feb 2020 – Sep 2021',
+    period: formatPeriod(experienceDates.portoviejoGadStart, experienceDates.portoviejoGadEnd, lang),
     description: lang === 'es' 
       ? 'Implementé sistema de recolección de residuos en tiempo real con Laravel + Node.js. Frontend en Angular + Ionic, integraciones Google Maps API y Firebase. Notifiqué usuarios vía Twilio y Firebase Cloud Messaging.'
       : 'Implemented real-time waste collection system with Laravel + Node.js. Frontend in Angular + Ionic, Google Maps API and Firebase integrations. User notifications via Twilio and Firebase Cloud Messaging.'
@@ -49,7 +51,7 @@ const experiences = [
   {
     title: lang === 'es' ? 'Desarrollador Full Stack' : 'Full Stack Developer',
     company: lang === 'es' ? 'Inst. Superior Tecnológico Portoviejo' : 'Portoviejo Technical Institute',
-    period: lang === 'es' ? 'Abr 2019 – Dic 2021' : 'Apr 2019 – Dec 2021',
+    period: formatPeriod(experienceDates.portoviejoInstStart, experienceDates.portoviejoInstEnd, lang),
     description: lang === 'es' 
       ? 'Desarrollé sistema académico integral: matrículas, pagos, facturación electrónica (Datil API). Frontend en Angular, backend en Laravel. Optimicé procesos administrativos y de asistencia.'
       : 'Developed comprehensive academic system: enrollment, payments, electronic invoicing (Datil API). Frontend in Angular, backend in Laravel. Optimized administrative and attendance processes.'

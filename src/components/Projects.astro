@@ -1,4 +1,6 @@
 ---
+import { projectDates, formatDate } from "../utils/dates";
+
 export interface Props {
   lang: "es" | "en";
 }
@@ -8,7 +10,7 @@ const { lang } = Astro.props;
 const projects = [
   {
     title: "Urban Recolector System",
-    period: "2020 – 2021",
+    period: `${formatDate(projectDates.urbanRecolectorStart, lang).split(' ')[1]} – ${formatDate(projectDates.urbanRecolectorEnd, lang).split(' ')[1]}`,
     description:
       lang === "es"
         ? "Sistema de gestión de recolección de residuos con geolocalización y notificaciones (Laravel, NodeJS, Angular, Ionic). Mejoró eficiencia operativa en un 30%."
@@ -17,7 +19,7 @@ const projects = [
   },
   {
     title: "ITSUP Integrated Management System",
-    period: "2019 – 2021",
+    period: `${formatDate(projectDates.itsupStart, lang).split(' ')[1]} – ${formatDate(projectDates.itsupEnd, lang).split(' ')[1]}`,
     description:
       lang === "es"
         ? "Plataforma académica integral: admisión, matriculación, pagos, facturación electrónica (Datil API). Incrementó eficiencia administrativa en un 40%."

@@ -1,11 +1,13 @@
 ---
 import { t } from "../utils/translations";
+import { calculateYearsOfExperience } from "../utils/dates";
 
 export interface Props {
   lang: "es" | "en";
 }
 
 const { lang } = Astro.props;
+const yearsOfExperience = calculateYearsOfExperience();
 ---
 
 <section
@@ -127,7 +129,7 @@ const { lang } = Astro.props;
         class="flex justify-center items-center space-x-8 md:space-x-12 text-sm text-gray-500 animate-fade-up"
         style="animation-delay: 0.8s;">
         <div class="text-center">
-          <span class="font-semibold text-blue-600">7+</span>
+          <span class="font-semibold text-blue-600">{yearsOfExperience}+</span>
           <span class="ml-1">{lang === "es" ? "años exp." : "years exp."}</span>
         </div>
         <div class="w-1 h-1 bg-gray-300 rounded-full"></div>

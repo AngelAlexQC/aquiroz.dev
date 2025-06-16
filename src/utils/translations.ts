@@ -1,3 +1,8 @@
+import { calculateYearsOfExperience } from './dates';
+
+// Obtener años dinámicamente
+const getYearsOfExperience = () => calculateYearsOfExperience();
+
 export const translations = {
   // Navigation
   'nav.about': {
@@ -41,8 +46,8 @@ export const translations = {
     en: 'About Me'
   },
   'about.description': {
-    es: 'Ingeniero de Software con más de 7 años de experiencia profesional construyendo sistemas robustos, modulares y escalables. Especializado en desarrollo full-stack (backend + frontend), arquitectura limpia, liderazgo técnico e integración de sistemas. Apuesto por la automatización DevOps, la mejora continua y la entrega de soluciones de alto impacto a nivel internacional.',
-    en: 'Senior Software Engineer with over 7 years of experience building robust, modular, and scalable systems. Specialized in full-stack development (backend + frontend), clean architecture, technical leadership, and system integration. I embrace DevOps automation, continuous improvement, and delivering high-impact solutions on a global scale.'
+    es: () => `Ingeniero de Software con más de ${getYearsOfExperience()} años de experiencia profesional construyendo sistemas robustos, modulares y escalables. Especializado en desarrollo full-stack (backend + frontend), arquitectura limpia, liderazgo técnico e integración de sistemas. Apuesto por la automatización DevOps, la mejora continua y la entrega de soluciones de alto impacto a nivel internacional.`,
+    en: () => `Senior Software Engineer with over ${getYearsOfExperience()} years of experience building robust, modular, and scalable systems. Specialized in full-stack development (backend + frontend), clean architecture, technical leadership, and system integration. I embrace DevOps automation, continuous improvement, and delivering high-impact solutions on a global scale.`
   },
 
   // Experience
@@ -109,6 +114,10 @@ export const translations = {
   'common.projects_completed': {
     es: 'Proyectos Completados',
     en: 'Projects Completed'
+  },
+  'common.years_of_experience': {
+    es: () => `${getYearsOfExperience()} años`,
+    en: () => `${getYearsOfExperience()} years`
   }
 } as const;
 
@@ -116,5 +125,6 @@ export type TranslationKey = keyof typeof translations;
 export type Language = 'es' | 'en';
 
 export function t(key: TranslationKey, lang: Language): string {
-  return translations[key][lang] || translations[key]['en'] || key;
+  const value = translations[key][lang] || translations[key]['en'] || key;
+  return typeof value === 'function' ? value() : value;
 }
