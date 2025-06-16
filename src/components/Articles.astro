@@ -1,0 +1,123 @@
+---
+export interface Props {
+  lang: "es" | "en";
+}
+
+const { lang } = Astro.props;
+
+const articles = [
+  {
+    title: "Installing Multiple Versions of PHP on Ubuntu, Debian (also WSL)",
+    date: new Date('2024-05-04'),
+    description: lang === 'es' 
+      ? "Guía completa para instalar múltiples versiones de PHP en sistemas Ubuntu/Debian, incluyendo WSL."
+      : "Complete guide to installing multiple PHP versions on Ubuntu/Debian systems, including WSL.",
+    url: "https://dev.to/angelalexqc/installing-multiple-versions-of-php-on-ubuntu-debian-also-wsl-5hjp",
+    tags: ["PHP", "Ubuntu", "DevOps", "WSL"]
+  },
+  {
+    title: "Simple Internationalization (i18n) for Next.js (App Router)",
+    date: new Date('2023-09-21'),
+    description: lang === 'es'
+      ? "Implementación simple de traducciones usando Server Actions y cookies en Next.js 13."
+      : "Simple implementation for translations using Server Actions and cookies in Next.js 13.",
+    url: "https://dev.to/angelalexqc/simple-internationalization-i18n-for-nextjs-app-router-with-server-actions-and-cookies-2n27",
+    tags: ["Next.js", "i18n", "React", "TypeScript"]
+  },
+  {
+    title: "Building a Rock-Solid Angular CI/CD Pipeline with GitLab",
+    date: new Date('2023-04-26'),
+    description: lang === 'es'
+      ? "Guía paso a paso para crear pipelines CI/CD robustos con GitLab para aplicaciones Angular."
+      : "Step-by-step guide to building robust CI/CD pipelines with GitLab for Angular applications.",
+    url: "https://dev.to/angelalexqc/building-a-rock-solid-angular-cicd-pipeline-with-gitlab-a-step-by-step-guide-1fjl",
+    tags: ["Angular", "GitLab", "CI/CD", "DevOps"]
+  },
+  {
+    title: "Using next-i18next & NextAuth.js in the same NextJS app",
+    date: new Date('2022-04-17'),
+    description: lang === 'es'
+      ? "Tutorial para integrar autenticación e internacionalización en aplicaciones Next.js."
+      : "Tutorial to integrate authentication and internationalization in Next.js applications.",
+    url: "https://dev.to/angelalexqc/using-next-i18next-nextauthjs-in-the-same-nextjs-app-5k5",
+    tags: ["Next.js", "NextAuth", "i18next", "Authentication"]
+  }
+];
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  });
+};
+---
+
+<section id="articles" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        {lang === "es" ? "Artículos & Tutoriales" : "Articles & Tutorials"}
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        {lang === "es" 
+          ? "Comparto conocimiento y experiencias técnicas a través de artículos en dev.to"
+          : "I share technical knowledge and experiences through articles on dev.to"
+        }
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {articles.map((article) => (
+        <article class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+          <div class="flex justify-between items-start mb-4">
+            <time class="text-sm text-blue-600 font-medium">
+              {formatDate(article.date)}
+            </time>
+            <a 
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-blue-600 hover:text-blue-800 transition-colors"
+              aria-label={lang === "es" ? "Leer artículo completo" : "Read full article"}
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+              </svg>
+            </a>
+          </div>
+          
+          <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
+            {article.title}
+          </h3>
+          
+          <p class="text-gray-600 mb-4 line-clamp-3">
+            {article.description}
+          </p>
+          
+          <div class="flex flex-wrap gap-2">
+            {article.tags.map((tag) => (
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="text-center mt-12">
+      <a
+        href="https://dev.to/angelalexqc"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M7.42 10.05c-.18-.16-.46-.23-.84-.23H6l.02 2.44.04 2.45.56-.02c.41 0 .63-.07.83-.26.24-.24.26-.36.26-2.2 0-1.91-.02-1.96-.29-2.18zM0 4.94v14.12h24V4.94H0zM8.56 15.3c-.44.58-1.06.77-2.53.77H4.71V8.53h1.4c1.67 0 2.16.18 2.6.9.27.43.29.6.32 2.57.05 2.23-.02 2.73-.47 3.3zm5.09-5.47h-2.47v1.77h1.52v1.28l-.72.04-.75.03v1.77l1.22.03 1.2.04v1.28h-1.6c-1.53 0-1.6-.01-1.87-.3l-.3-.28v-3.16c0-3.02.01-3.18.25-3.48.23-.31.25-.31 1.88-.31h1.64v1.3zm4.68 5.45c-.17.43-.64.79-1 .79-.18 0-.45-.15-.67-.39-.32-.32-.45-.63-.82-2.08l-.9-3.39-.45-1.67h.76c.4 0 .75.02.75.05 0 .06 1.16 4.54 1.26 4.83.04.15.32-.7.73-2.3l.66-2.52.74-.04c.4-.02.73 0 .73.04 0 .14-1.67 6.38-1.8 6.68z"/>
+        </svg>
+        <span>{lang === "es" ? "Ver todos mis artículos" : "View all my articles"}</span>
+      </a>
+    </div>
+  </div>
+</section>

@@ -64,6 +64,12 @@ const baseUrl = isSpanish ? "/es" : "";
         <a href={`${baseUrl}#projects`} class={customClasses.navLink}>
           {lang === "es" ? "Proyectos" : "Projects"}
         </a>
+        <a href={`${baseUrl}#opensource`} class={customClasses.navLink}>
+          {lang === "es" ? "Open Source" : "Open Source"}
+        </a>
+        <a href={`${baseUrl}#articles`} class={customClasses.navLink}>
+          {lang === "es" ? "Artículos" : "Articles"}
+        </a>
         <a href={`${baseUrl}#contact`} class={customClasses.navLink}>
           {lang === "es" ? "Contacto" : "Contact"}
         </a>
@@ -115,6 +121,16 @@ const baseUrl = isSpanish ? "/es" : "";
           href={`/${lang}/#projects`}
           class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Proyectos" : "Projects"}
+        </a>
+        <a
+          href={`/${lang}/#opensource`}
+          class={`block ${customClasses.navLink} py-2`}>
+          {lang === "es" ? "Open Source" : "Open Source"}
+        </a>
+        <a
+          href={`/${lang}/#articles`}
+          class={`block ${customClasses.navLink} py-2`}>
+          {lang === "es" ? "Artículos" : "Articles"}
         </a>
         <a
           href={`/${lang}/#contact`}
