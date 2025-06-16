@@ -27,16 +27,35 @@ const { lang } = Astro.props;
 
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <!-- Text Content -->
-      <div class="space-y-6">
+      <div class="space-y-6 animate-fade-in-left">
         <p class="text-lg text-gray-700 leading-relaxed">
           {t('about.description', lang)}
         </p>
 
+        <!-- Key technologies -->
+        <div class="bg-gray-50 rounded-xl p-6 mt-6">
+          <h4 class="font-semibold text-gray-900 mb-4 flex items-center">
+            <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+            {lang === "es" ? "Tecnologías Principales" : "Core Technologies"}
+          </h4>
+          <div class="flex flex-wrap gap-2">
+            {["TypeScript", "Node.js", "React", "Python", "AWS", "Docker"].map((tech) => (
+              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium hover:bg-blue-200 transition-colors">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
         <!-- Key highlights -->
         <div class="grid grid-cols-2 gap-4 mt-8">
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-3 h-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-full">
+          <div class="flex items-center space-x-3 group">
+            <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+              </svg>
             </div>
             <span class="text-gray-700 font-medium"
               >{
@@ -44,38 +63,57 @@ const { lang } = Astro.props;
               }</span
             >
           </div>
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-3 h-3 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full">
+          <div class="flex items-center space-x-3 group">
+            <div class="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+              </svg>
             </div>
             <span class="text-gray-700 font-medium">DevOps</span>
           </div>
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full">
+          <div class="flex items-center space-x-3 group">
+            <div class="w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+              </svg>
             </div>
             <span class="text-gray-700 font-medium">Full Stack</span>
           </div>
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full">
+          <div class="flex items-center space-x-3 group">
+            <div class="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+              </svg>
             </div>
             <span class="text-gray-700 font-medium"
               >{lang === "es" ? "Arquitectura" : "Architecture"}</span
             >
           </div>
         </div>
+
+        <!-- Call to action -->
+        <div class="mt-8 pt-6 border-t border-gray-200">
+          <a 
+            href="#contact" 
+            class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+            </svg>
+            {lang === "es" ? "Conversemos" : "Let's Talk"}
+          </a>
+        </div>
       </div>
 
       <!-- Visual Element -->
-      <div class="relative">
+      <div class="relative animate-fade-in-right">
         <div
-          class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-xl">
+          class="bg-gradient-to-br from-blue-50 to-purple-50 rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300">
           <div class="grid grid-cols-2 gap-4">
             <div
-              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div
-                class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+                class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4 animate-pulse-slow">
                 7+
               </div>
               <h4 class="font-semibold text-gray-900">
@@ -87,9 +125,9 @@ const { lang } = Astro.props;
             </div>
 
             <div
-              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               <div
-                class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center text-white text-xl font-bold mb-4">
+                class="w-12 h-12 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold mb-4">
                 ∞
               </div>
               <h4 class="font-semibold text-gray-900">
@@ -101,7 +139,7 @@ const { lang } = Astro.props;
             </div>
 
             <div
-              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow col-span-2">
+              class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 col-span-2">
               <div class="flex items-center space-x-4">
                 <div
                   class="w-12 h-12 bg-gradient-to-r from-orange-500 to-red-600 rounded-xl flex items-center justify-center text-white">
@@ -117,7 +155,7 @@ const { lang } = Astro.props;
                       d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                   </svg>
                 </div>
-                <div>
+                <div class="flex-1">
                   <h4 class="font-semibold text-gray-900">
                     {lang === "es" ? "Innovación" : "Innovation"}
                   </h4>
@@ -129,16 +167,130 @@ const { lang } = Astro.props;
                     }
                   </p>
                 </div>
+                <div class="text-right">
+                  <div class="text-2xl font-bold text-orange-600">50+</div>
+                  <p class="text-gray-600 text-xs">
+                    {lang === "es" ? "Proyectos" : "Projects"}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- Floating elements for visual interest -->
+        <div class="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-60 animate-bounce-slow"></div>
+        <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-pink-400 to-purple-500 rounded-full opacity-60 animate-bounce-slow" style="animation-delay: 1s;"></div>
       </div>
-    </div>
-  </div>
 </section>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes bounceSlow {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  @keyframes pulseSlow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.6s ease-out;
+  }
+
+  .animate-fade-in-right {
+    animation: fadeInRight 0.6s ease-out 0.3s both;
+  }
+
+  .animate-bounce-slow {
+    animation: bounceSlow 3s infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulseSlow 2s infinite;
+  }
+
+  /* Intersection Observer animations */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in-left,
+    .animate-fade-in-right {
+      opacity: 0;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          element.style.opacity = '1';
+          const animation = element.getAttribute('data-animation');
+          if (animation) {
+            element.style.animation = animation;
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe elements with animations
+    const animatedElements = document.querySelectorAll('.animate-fade-in-left, .animate-fade-in-right');
+    animatedElements.forEach((el) => {
+      const element = el as HTMLElement;
+      if (element.classList.contains('animate-fade-in-left')) {
+        element.setAttribute('data-animation', 'fadeInLeft 0.6s ease-out forwards');
+      } else if (element.classList.contains('animate-fade-in-right')) {
+        element.setAttribute('data-animation', 'fadeInRight 0.6s ease-out 0.3s both');
+      }
+      observer.observe(element);
+    });
+  });
+</script>
