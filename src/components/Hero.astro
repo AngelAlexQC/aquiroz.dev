@@ -124,25 +124,13 @@ const yearsOfExperience = calculateYearsOfExperience();
         </a>
       </div>
 
-      <!-- Subtle Stats -->
+      <!-- Simple experience indicator -->
       <div
-        class="flex justify-center items-center space-x-8 md:space-x-12 text-sm text-gray-500 animate-fade-up"
+        class="flex justify-center items-center text-sm text-gray-500 animate-fade-up"
         style="animation-delay: 0.8s;">
         <div class="text-center">
           <span class="font-semibold text-blue-600">{yearsOfExperience}+</span>
-          <span class="ml-1">{lang === "es" ? "años exp." : "years exp."}</span>
-        </div>
-        <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
-        <div class="text-center">
-          <span class="font-semibold text-purple-600">50+</span>
-          <span class="ml-1">{lang === "es" ? "proyectos" : "projects"}</span>
-        </div>
-        <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
-        <div class="text-center">
-          <span class="font-semibold text-pink-600">15+</span>
-          <span class="ml-1"
-            >{lang === "es" ? "tecnologías" : "technologies"}</span
-          >
+          <span class="ml-1">{lang === "es" ? "años de experiencia" : "years of experience"}</span>
         </div>
       </div>
     </div>
