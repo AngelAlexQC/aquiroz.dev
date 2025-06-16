@@ -83,47 +83,67 @@ const yearsOfExperience = calculateYearsOfExperience();
     </div>
 
     <!-- Main content in a balanced grid layout -->
-    <div class="grid lg:grid-cols-3 gap-16 items-start">
-      <!-- Left: Text Content -->
-      <div class="lg:col-span-2 space-y-8 animate-fade-in-left">
-        <div class="prose prose-lg max-w-none">
-          <p class="text-xl text-gray-700 leading-relaxed mb-8">
-            {t("about.description", lang)}
+    <div class="flex flex-col items-center justify-center">
+      <!-- Text Content centrado -->
+      <div class="w-full max-w-3xl space-y-10 animate-fade-in-left text-center">
+        <div class="prose prose-lg max-w-none mx-auto">
+          <p class="text-2xl text-gray-800 leading-relaxed mb-8 font-medium">
+            {
+              t("about.description", lang)
+                .split(/\n|\./)
+                .filter(Boolean)
+                .map((line, idx) => (
+                  <span style="display:block;margin-bottom:1.5em;line-height:1.7;letter-spacing:0.01em;">
+                    {line.trim()}
+                    {line.endsWith(".") ? "" : "."}
+                  </span>
+                ))
+            }
           </p>
-          
           <!-- Key highlights tags -->
-          <div class="flex flex-wrap gap-3 mb-8">
-            <span class="inline-flex items-center space-x-2 bg-gradient-to-r from-green-50 to-blue-50 px-4 py-2 rounded-full border border-green-200 group hover:shadow-md transition-all">
-              <div class="w-4 h-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+          <div
+            class="flex flex-wrap justify-center gap-4 mb-10 pt-2 border-t border-gray-200">
+            <span
+              class="inline-flex items-center space-x-2 bg-gradient-to-r from-green-50 to-blue-50 px-4 py-2 rounded-full border border-green-200 group hover:shadow-md transition-all">
+              <div
+                class="w-4 h-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                 <div class="w-2 h-2 bg-white rounded-full"></div>
               </div>
-              <span class="text-gray-700 font-medium text-sm">{lang === "es" ? "Liderazgo Técnico" : "Technical Leadership"}</span>
+              <span class="text-gray-700 font-medium text-sm"
+                >{
+                  lang === "es" ? "Liderazgo Técnico" : "Technical Leadership"
+                }</span
+              >
             </span>
-            
-            <span class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-50 to-pink-50 px-4 py-2 rounded-full border border-purple-200 group hover:shadow-md transition-all">
-              <div class="w-4 h-4 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span
+              class="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-50 to-pink-50 px-4 py-2 rounded-full border border-purple-200 group hover:shadow-md transition-all">
+              <div
+                class="w-4 h-4 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                 <div class="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <span class="text-gray-700 font-medium text-sm">DevOps</span>
             </span>
-            
-            <span class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-50 to-orange-50 px-4 py-2 rounded-full border border-yellow-200 group hover:shadow-md transition-all">
-              <div class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span
+              class="inline-flex items-center space-x-2 bg-gradient-to-r from-yellow-50 to-orange-50 px-4 py-2 rounded-full border border-yellow-200 group hover:shadow-md transition-all">
+              <div
+                class="w-4 h-4 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                 <div class="w-2 h-2 bg-white rounded-full"></div>
               </div>
               <span class="text-gray-700 font-medium text-sm">Full Stack</span>
             </span>
-            
-            <span class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-2 rounded-full border border-blue-200 group hover:shadow-md transition-all">
-              <div class="w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span
+              class="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-50 to-purple-50 px-4 py-2 rounded-full border border-blue-200 group hover:shadow-md transition-all">
+              <div
+                class="w-4 h-4 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
                 <div class="w-2 h-2 bg-white rounded-full"></div>
               </div>
-              <span class="text-gray-700 font-medium text-sm">{lang === "es" ? "Arquitectura" : "Architecture"}</span>
+              <span class="text-gray-700 font-medium text-sm"
+                >{lang === "es" ? "Arquitectura" : "Architecture"}</span
+              >
             </span>
           </div>
-          
           <!-- Call to action -->
-          <div class="pt-4">
+          <div class="pt-8">
             <a
               href="#contact"
               class="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg hover:shadow-xl">
@@ -141,59 +161,6 @@ const yearsOfExperience = calculateYearsOfExperience();
               </svg>
               {lang === "es" ? "Conversemos" : "Let's Talk"}
             </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Statistics -->
-      <div class="lg:col-span-1 animate-fade-in-right">
-        <div class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 sticky top-8">
-          <h3 class="text-lg font-bold text-gray-900 mb-6 text-center">
-            {lang === "es" ? "En números" : "By the numbers"}
-          </h3>
-          
-          <div class="space-y-6">
-            <!-- Years of experience -->
-            <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center text-white text-2xl font-bold mb-3 mx-auto animate-pulse-slow">
-                {yearsOfExperience}+
-              </div>
-              <h4 class="font-semibold text-gray-900">
-                {lang === "es" ? "Años de experiencia" : "Years of experience"}
-              </h4>
-            </div>
-
-            <!-- Continuous learning -->
-            <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-teal-600 rounded-2xl flex items-center justify-center text-white text-3xl font-bold mb-3 mx-auto">
-                ∞
-              </div>
-              <h4 class="font-semibold text-gray-900">
-                {lang === "es" ? "Aprendizaje continuo" : "Continuous learning"}
-              </h4>
-            </div>
-
-            <!-- Projects -->
-            <div class="text-center p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-all">
-              <div class="w-16 h-16 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center text-white mb-3 mx-auto">
-                <div class="text-center">
-                  <div class="text-2xl font-bold">50+</div>
-                </div>
-              </div>
-              <h4 class="font-semibold text-gray-900">
-                {lang === "es" ? "Proyectos completados" : "Projects completed"}
-              </h4>
-            </div>
-          </div>
-          
-          <!-- Decorative element -->
-          <div class="mt-6 text-center">
-            <div class="inline-flex items-center space-x-2 text-gray-500 text-sm">
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-              </svg>
-              <span>{lang === "es" ? "Siempre innovando" : "Always innovating"}</span>
-            </div>
           </div>
         </div>
       </div>
