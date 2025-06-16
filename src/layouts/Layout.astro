@@ -25,9 +25,31 @@ const currentYear = new Date().getFullYear();
         : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership"}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#2563eb" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Ángel Quiroz" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    
+    <!-- Keywords -->
+    <meta name="keywords" content={lang === "es" 
+      ? "Ángel Quiroz, Ingeniero Software, Full Stack Developer, React, Node.js, TypeScript, Laravel, AWS, Angular, Vue.js, Arquitectura Software, DevOps, Ecuador"
+      : "Angel Quiroz, Software Engineer, Full Stack Developer, React, Node.js, TypeScript, Laravel, AWS, Angular, Vue.js, Software Architecture, DevOps, Ecuador"} />
+    
     <title>{title}</title>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={Astro.url} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,6 +58,15 @@ const currentYear = new Date().getFullYear();
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://skillicons.dev/icons?i=react" as="image" />
+    <link rel="preload" href="https://skillicons.dev/icons?i=nodejs" as="image" />
+    <link rel="preload" href="https://skillicons.dev/icons?i=aws" as="image" />
+    <link rel="dns-prefetch" href="//skillicons.dev" />
+    <link rel="dns-prefetch" href="//github.com" />
+    <link rel="dns-prefetch" href="//dev.to" />
+    <link rel="dns-prefetch" href="//linkedin.com" />
 
     <style>
       * {
@@ -112,14 +143,62 @@ const currentYear = new Date().getFullYear();
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
-    <meta
-      property="og:description"
-      content={lang === "es"
-        ? "Ingeniero de Software Senior especializado en desarrollo full-stack"
-        : "Senior Software Engineer specialized in full-stack development"}
-    />
+    <meta property="og:description" content={lang === "es"
+        ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
+        : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership"} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content="Ángel Quiroz - Portfolio" />
+    <meta property="og:image" content="https://aquiroz.dev/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@aquirozdev" />
+    <meta name="twitter:creator" content="@aquirozdev" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={lang === "es"
+        ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
+        : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership"} />
+    <meta name="twitter:image" content="https://aquiroz.dev/og-image.jpg" />
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Ángel Quiroz",
+        "alternateName": "Angel Quiroz",
+        "jobTitle": lang === "es" ? "Ingeniero de Software Senior" : "Senior Software Engineer",
+        "description": lang === "es" 
+          ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
+          : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership",
+        "url": "https://aquiroz.dev",
+        "image": "https://aquiroz.dev/logo.svg",
+        "sameAs": [
+          "https://github.com/angelalexqc",
+          "https://www.linkedin.com/in/aquirozdev",
+          "https://dev.to/angelalexqc",
+          "https://twitter.com/aquirozdev"
+        ],
+        "email": "hello@aquiroz.dev",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Freelance"
+        },
+        "nationality": "EC",
+        "knowsAbout": [
+          "JavaScript", "TypeScript", "React", "Node.js", "Laravel", "PHP", 
+          "Angular", "Vue.js", "AWS", "Docker", "DevOps", "Software Architecture"
+        ],
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://aquiroz.dev"
+        }
+      })}
+    </script>
 
     <!-- Alternate languages -->
     <link rel="alternate" hreflang="es" href="https://aquiroz.dev/es" />
@@ -133,15 +212,72 @@ const currentYear = new Date().getFullYear();
       <slot />
     </main>
 
-    <footer class="bg-gray-800 text-white py-8">
-      <div class="max-w-6xl mx-auto px-4 text-center">
-        <p>
-          &copy; {currentYear} Ángel Quiroz. {
-            lang === "es"
-              ? "Todos los derechos reservados."
-              : "All rights reserved."
-          }
-        </p>
+    <footer class="bg-gray-800 text-white py-8" role="contentinfo">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="grid md:grid-cols-3 gap-8 mb-6">
+          <!-- Contact Info -->
+          <div>
+            <h3 class="font-semibold mb-3">
+              {lang === "es" ? "Contacto" : "Contact"}
+            </h3>
+            <div class="space-y-2 text-sm text-gray-300">
+              <p>
+                <a href="mailto:hello@aquiroz.dev" class="hover:text-white transition-colors">
+                  hello@aquiroz.dev
+                </a>
+              </p>
+              <p>Ecuador</p>
+            </div>
+          </div>
+          
+          <!-- Quick Links -->
+          <div>
+            <h3 class="font-semibold mb-3">
+              {lang === "es" ? "Enlaces" : "Links"}
+            </h3>
+            <div class="space-y-2 text-sm text-gray-300">
+              <p>
+                <a href="https://github.com/angelalexqc" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                  GitHub
+                </a>
+              </p>
+              <p>
+                <a href="https://www.linkedin.com/in/aquirozdev" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                  LinkedIn
+                </a>
+              </p>
+              <p>
+                <a href="https://dev.to/angelalexqc" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">
+                  Blog
+                </a>
+              </p>
+            </div>
+          </div>
+          
+          <!-- Language Switch -->
+          <div>
+            <h3 class="font-semibold mb-3">
+              {lang === "es" ? "Idioma" : "Language"}
+            </h3>
+            <div class="space-y-2 text-sm text-gray-300">
+              <p>
+                <a href={lang === "es" ? "/" : "/es"} class="hover:text-white transition-colors">
+                  {lang === "es" ? "English" : "Español"}
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="border-t border-gray-700 pt-6 text-center">
+          <p class="text-sm text-gray-300">
+            &copy; {currentYear} Ángel Quiroz. {
+              lang === "es"
+                ? "Todos los derechos reservados."
+                : "All rights reserved."
+            }
+          </p>
+        </div>
       </div>
     </footer>
   </body>

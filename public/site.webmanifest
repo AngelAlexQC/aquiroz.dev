@@ -1,0 +1,20 @@
+{
+  "name": "Ángel Quiroz - Portfolio",
+  "short_name": "AQ Portfolio",
+  "description": "Senior Software Engineer specialized in full-stack development, architecture and technical leadership",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "professional", "technology"],
+  "lang": "en"
+}

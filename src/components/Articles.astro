@@ -43,6 +43,34 @@ const formatDate = (date: Date) => {
       </p>
     </div>
 
+    <!-- JSON-LD for Articles -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": lang === "es" ? "Blog de Ángel Quiroz" : "Angel Quiroz's Blog",
+      "description": lang === "es" 
+        ? "Artículos técnicos sobre desarrollo de software y tecnología"
+        : "Technical articles about software development and technology",
+      "url": "https://dev.to/angelalexqc",
+      "author": {
+        "@type": "Person",
+        "name": "Ángel Quiroz",
+        "url": "https://aquiroz.dev"
+      },
+      "blogPost": articles.map(article => ({
+        "@type": "BlogPosting",
+        "headline": article.title,
+        "description": article.description,
+        "url": article.url,
+        "datePublished": article.date.toISOString(),
+        "author": {
+          "@type": "Person",
+          "name": "Ángel Quiroz"
+        },
+        "keywords": article.tags.join(", ")
+      }))
+    })} />
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {articles.map((article) => (
         <article class="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">

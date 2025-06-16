@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /es
+Allow: /es/
+
+# Block non-essential files
+Disallow: /*.json$
+Disallow: /_astro/
+
+# Sitemap location
+Sitemap: https://aquiroz.dev/sitemap-index.xml
+Sitemap: https://aquiroz.dev/sitemap-0.xml
+
+# Crawl delay
+Crawl-delay: 1
