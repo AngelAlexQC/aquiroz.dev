@@ -314,7 +314,7 @@ const experiences = [
 
   /* Items de experiencia */
   .experience-item {
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1); /* Punto medio: 0.45s */
   }
 
   .experience-item.animate-in {
@@ -434,8 +434,8 @@ const experiences = [
 <script>
   // Intersection Observer para animaciones al hacer scroll
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.12,
+    rootMargin: '0px 0px -30px 0px'
   };
 
   const observer = new IntersectionObserver((entries) => {
@@ -444,10 +444,10 @@ const experiences = [
         const item = entry.target as HTMLElement;
         const index = parseInt(item.dataset.index || '0');
         
-        // Añadir delay basado en el índice para efecto escalonado
+        // Delay balanceado para efecto escalonado suave
         setTimeout(() => {
           item.classList.add('animate-in');
-        }, index * 150);
+        }, index * 100); // Punto medio: 100ms
         
         observer.unobserve(item);
       }
@@ -457,21 +457,40 @@ const experiences = [
   // Observar todos los items de experiencia
   document.addEventListener('DOMContentLoaded', () => {
     const experienceItems = document.querySelectorAll('.experience-item');
-    experienceItems.forEach(item => {
-      observer.observe(item);
-    });
+    
+    // Detectar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Si prefiere movimiento reducido, mostrar todo inmediatamente
+      experienceItems.forEach(item => {
+        (item as HTMLElement).classList.add('animate-in');
+      });
+    } else {
+      // Comportamiento normal con animaciones
+      experienceItems.forEach(item => {
+        observer.observe(item);
+      });
+    }
   });
 
-  // Efecto de paralaje sutil en las partículas
+  // Efecto de paralaje optimizado con throttling
   let ticking = false;
+  let lastScrollY = 0;
 
   function updateParticles() {
     const scrolled = window.pageYOffset;
-    const parallax = document.querySelector('.floating-particles') as HTMLElement;
     
-    if (parallax) {
-      const speed = scrolled * 0.2;
-      parallax.style.transform = `translateY(${speed}px)`;
+    // Solo actualizar si el scroll cambió significativamente
+    if (Math.abs(scrolled - lastScrollY) > 5) {
+      const parallax = document.querySelector('.floating-particles') as HTMLElement;
+      
+      if (parallax) {
+        const speed = scrolled * 0.1; // Reducido de 0.2 a 0.1 para menos movimiento
+        parallax.style.transform = `translateY(${speed}px)`;
+      }
+      
+      lastScrollY = scrolled;
     }
     
     ticking = false;
@@ -484,36 +503,42 @@ const experiences = [
     }
   }
 
-  window.addEventListener('scroll', requestTick);
+  // Usar throttling para el scroll
+  window.addEventListener('scroll', requestTick, { passive: true });
 
-  // Añadir más partículas dinámicas
+  // Añadir más partículas dinámicas con límite
   function createFloatingParticle() {
+    const container = document.querySelector('.floating-particles');
+    if (!container) return;
+    
+    // Limitar el número de partículas para mejor rendimiento
+    const existingParticles = container.children.length;
+    if (existingParticles > 8) return;
+    
     const particle = document.createElement('div');
     particle.style.position = 'absolute';
-    particle.style.width = Math.random() * 10 + 5 + 'px';
+    particle.style.width = Math.random() * 8 + 4 + 'px'; // Reducido el tamaño
     particle.style.height = particle.style.width;
     particle.style.background = `linear-gradient(45deg, 
-      rgba(59, 130, 246, ${Math.random() * 0.3}), 
-      rgba(139, 92, 246, ${Math.random() * 0.3}))`;
+      rgba(59, 130, 246, ${Math.random() * 0.2}), 
+      rgba(139, 92, 246, ${Math.random() * 0.2}))`;
     particle.style.borderRadius = '50%';
     particle.style.top = Math.random() * 100 + '%';
     particle.style.left = Math.random() * 100 + '%';
-    particle.style.animation = `particle-float ${Math.random() * 4 + 4}s ease-in-out infinite`;
-    particle.style.animationDelay = Math.random() * 2 + 's';
+    particle.style.animation = `particle-float ${Math.random() * 3 + 3}s ease-in-out infinite`; // Reducido el tiempo
+    particle.style.animationDelay = Math.random() * 1 + 's';
+    particle.style.pointerEvents = 'none'; // Evitar interferir con clics
     
-    const container = document.querySelector('.floating-particles');
-    if (container) {
-      container.appendChild(particle);
-      
-      // Remover la partícula después de un tiempo
-      setTimeout(() => {
-        if (particle.parentNode) {
-          particle.parentNode.removeChild(particle);
-        }
-      }, 10000);
-    }
+    container.appendChild(particle);
+    
+    // Remover la partícula después de un tiempo más corto
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 8000); // Reducido de 10000ms a 8000ms
   }
 
-  // Crear partículas cada cierto tiempo
-  setInterval(createFloatingParticle, 3000);
+  // Crear partículas con frecuencia balanceada
+  setInterval(createFloatingParticle, 4000); // Punto medio: 4000ms
 </script>
