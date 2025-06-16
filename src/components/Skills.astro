@@ -88,26 +88,39 @@ const skillCategories = [
 ---
 
 <section id="skills" class="py-24 bg-white relative overflow-hidden">
-  <!-- Background decoration -->
-  <div class="absolute top-20 right-0 w-72 h-72 bg-gradient-to-l from-blue-400/10 to-purple-400/10 rounded-full blur-3xl"></div>
+  <!-- Background decorations mejoradas -->
+  <div class="absolute top-20 right-0 w-72 h-72 bg-gradient-to-l from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-pulse"></div>
+  <div class="absolute bottom-20 left-0 w-96 h-96 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+  
+  <!-- Partículas flotantes -->
+  <div class="floating-dots absolute inset-0 pointer-events-none">
+    <div class="dot-1"></div>
+    <div class="dot-2"></div>
+    <div class="dot-3"></div>
+    <div class="dot-4"></div>
+    <div class="dot-5"></div>
+  </div>
   
   <div class="max-w-7xl mx-auto px-4 relative">
-    <div class="text-center mb-16">
-      <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider">
+    <div class="text-center mb-16 opacity-0 animate-fade-in">
+      <span class="text-blue-600 font-semibold text-sm uppercase tracking-wider animate-bounce-subtle">
         {t('skills.subtitle', lang)}
       </span>
       <h2 class="text-5xl font-bold mt-4 mb-6">
         <span class="text-gray-900">{t('skills.title', lang).split(' ')[0]}</span>
-        <span class="gradient-text"> {t('skills.title', lang).split(' ').slice(1).join(' ')}</span>
+        <span class="gradient-text animate-gradient"> {t('skills.title', lang).split(' ').slice(1).join(' ')}</span>
       </h2>
     </div>
     
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {skillCategories.map((category) => (
-        <div class="group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200 h-80 flex flex-col">
-          <!-- Category Icon -->
-          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg mx-auto">
-            <category.Icon size={32} />
+      {skillCategories.map((category, index) => (
+        <div class={`skill-card group bg-gradient-to-br from-white to-gray-50 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-blue-200 h-80 flex flex-col opacity-0 transform translate-y-8`} data-index={index}>
+          <!-- Category Icon mejorado -->
+          <div class="icon-container w-14 h-14 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-all duration-300 shadow-lg mx-auto relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
+            <div class="icon-inner relative z-10 group-hover:rotate-12 transition-transform duration-300">
+              <category.Icon size={32} />
+            </div>
           </div>
           
           <h3 class="text-lg font-bold text-gray-900 mb-6 group-hover:text-blue-600 transition-colors text-center leading-tight min-h-[3rem] flex items-center justify-center">
@@ -115,21 +128,326 @@ const skillCategories = [
           </h3>
           
           <ul class="space-y-3 flex-1">
-            {category.skills.map((skill) => (
-              <li class="flex items-center text-gray-700 group-hover:text-gray-900 transition-colors">
-                <div class="flex items-center justify-center mr-3 group-hover:scale-105 transition-all duration-300 flex-shrink-0">
+            {category.skills.map((skill, skillIndex) => (
+              <li class={`skill-item flex items-center text-gray-700 group-hover:text-gray-900 transition-all duration-300 transform hover:translate-x-2 hover:scale-105`} style={`animation-delay: ${skillIndex * 100}ms;`}>
+                <div class="skill-icon flex items-center justify-center mr-3 group-hover:scale-105 transition-all duration-300 flex-shrink-0 relative">
                   {skill.icon.startsWith('https://') ? (
-                    <img src={skill.icon} alt={skill.name} class="w-5 h-5 object-contain" loading="lazy" />
+                    <img src={skill.icon} alt={skill.name} class="w-5 h-5 object-contain filter group-hover:brightness-110 transition-all duration-300" loading="lazy" />
                   ) : (
                     <Fragment set:html={skill.icon} />
                   )}
+                  <div class="absolute inset-0 bg-blue-400 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-300 animate-ping"></div>
                 </div>
                 <span class="font-medium text-sm leading-tight">{skill.name}</span>
               </li>
             ))}
           </ul>
+          
+          <!-- Efecto de brillo en hover -->
+          <div class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-400/5 to-transparent transform rotate-12 scale-150 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none"></div>
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  /* Animaciones base */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes bounce-subtle {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-2px);
+    }
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0) rotate(0deg);
+    }
+    33% {
+      transform: translateY(-10px) rotate(120deg);
+    }
+    66% {
+      transform: translateY(5px) rotate(240deg);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+    }
+  }
+
+  /* Clases de animación */
+  .animate-fade-in {
+    animation: fade-in 1s ease-out 0.5s both;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-gradient {
+    background: linear-gradient(-45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+    background-size: 400% 400%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-shift 3s ease-in-out infinite;
+  }
+
+  /* Tarjetas de habilidades */
+  .skill-card {
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .skill-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .skill-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
+  }
+
+  .skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.02), rgba(139, 92, 246, 0.02));
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .skill-card:hover::before {
+    opacity: 1;
+  }
+
+  /* Iconos con efectos */
+  .icon-container {
+    position: relative;
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .icon-container:hover {
+    animation: none;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.8);
+  }
+
+  /* Items de habilidades */
+  .skill-item {
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 4px 8px;
+    margin: -4px -8px;
+  }
+
+  .skill-item:hover {
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+  }
+
+  .skill-icon {
+    position: relative;
+  }
+
+  .skill-icon:hover img {
+    filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.6));
+  }
+
+  /* Partículas flotantes */
+  .floating-dots {
+    animation: float 20s ease-in-out infinite;
+  }
+
+  .floating-dots div {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.3), rgba(139, 92, 246, 0.3));
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .dot-1 {
+    width: 8px;
+    height: 8px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .dot-2 {
+    width: 6px;
+    height: 6px;
+    top: 20%;
+    right: 20%;
+    animation-delay: 1s;
+  }
+
+  .dot-3 {
+    width: 10px;
+    height: 10px;
+    bottom: 30%;
+    left: 15%;
+    animation-delay: 2s;
+  }
+
+  .dot-4 {
+    width: 5px;
+    height: 5px;
+    bottom: 20%;
+    right: 10%;
+    animation-delay: 3s;
+  }
+
+  .dot-5 {
+    width: 7px;
+    height: 7px;
+    top: 50%;
+    left: 50%;
+    animation-delay: 4s;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .skill-card:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+  }
+
+  /* Reducir movimiento para usuarios que lo prefieren */
+  @media (prefers-reduced-motion: reduce) {
+    .skill-card,
+    .skill-item,
+    .icon-container,
+    .floating-dots,
+    .floating-dots div {
+      animation: none !important;
+      transition: none !important;
+    }
+    
+    .skill-card:hover {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer para animaciones de aparición
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const card = entry.target as HTMLElement;
+        const index = parseInt(card.dataset.index || '0');
+        
+        // Animación escalonada
+        setTimeout(() => {
+          card.classList.add('animate-in');
+          
+          // Animar los items de habilidades individualmente
+          const skillItems = card.querySelectorAll('.skill-item');
+          skillItems.forEach((item, skillIndex) => {
+            setTimeout(() => {
+              (item as HTMLElement).style.opacity = '1';
+              (item as HTMLElement).style.transform = 'translateX(0)';
+            }, skillIndex * 100);
+          });
+        }, index * 150);
+        
+        observer.unobserve(card);
+      }
+    });
+  }, observerOptions);
+
+  // Observar las tarjetas cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    // Detectar preferencia de movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Mostrar todo inmediatamente sin animaciones
+      skillCards.forEach(card => {
+        (card as HTMLElement).classList.add('animate-in');
+        const skillItems = card.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+          (item as HTMLElement).style.opacity = '1';
+          (item as HTMLElement).style.transform = 'translateX(0)';
+        });
+      });
+    } else {
+      // Ocultar items inicialmente para animación
+      skillCards.forEach(card => {
+        const skillItems = card.querySelectorAll('.skill-item');
+        skillItems.forEach(item => {
+          (item as HTMLElement).style.opacity = '0';
+          (item as HTMLElement).style.transform = 'translateX(-10px)';
+          (item as HTMLElement).style.transition = 'all 0.3s ease';
+        });
+        observer.observe(card);
+      });
+    }
+  });
+
+  // Efectos de hover adicionales
+  document.addEventListener('DOMContentLoaded', () => {
+    const skillCards = document.querySelectorAll('.skill-card');
+    
+    skillCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        // Efecto de vibración sutil en el icono
+        const icon = card.querySelector('.icon-container');
+        if (icon) {
+          (icon as HTMLElement).style.animation = 'none';
+          setTimeout(() => {
+            (icon as HTMLElement).style.animation = 'pulse-glow 0.5s ease-in-out';
+          }, 10);
+        }
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        const icon = card.querySelector('.icon-container');
+        if (icon) {
+          (icon as HTMLElement).style.animation = 'pulse-glow 3s ease-in-out infinite';
+        }
+      });
+    });
+  });
+</script>
