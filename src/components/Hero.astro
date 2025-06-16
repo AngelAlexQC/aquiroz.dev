@@ -6,7 +6,7 @@ export interface Props {
 const { lang } = Astro.props;
 ---
 
-<section class="relative pt-20 min-h-screen flex items-center overflow-hidden">
+<section class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center overflow-hidden">
   <!-- Background Elements -->
   <div
     class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
@@ -61,47 +61,26 @@ const { lang } = Astro.props;
       </div>
 
       <!-- CTA Buttons -->
-      <div
-        class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up"
-        style="animation-delay: 0.6s;">
-        <a
-          href="/cv-es.pdf"
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up" style="animation-delay: 0.6s;">
+        <a 
+          href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'}
           download
-          class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
-          <svg
-            class="w-5 h-5 group-hover:rotate-12 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            ></path>
+          class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+        >
+          <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
-          <span>{lang === "es" ? "Descargar CV (ES)" : "Download CV (EN)"}</span
-          >
+          <span>{lang === 'es' ? 'Descargar CV' : 'Download CV'}</span>
         </a>
-
-        <a
-          href="/cv-en.pdf"
-          download
-          class="group glass-effect text-gray-700 px-8 py-4 rounded-full font-semibold hover:bg-white/40 transition-all duration-300 flex items-center space-x-2">
-          <svg
-            class="w-5 h-5 group-hover:rotate-12 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-            ></path>
+        
+        <a 
+          href="mailto:angel@aquiroz.dev"
+          class="group glass-effect text-gray-700 px-8 py-4 rounded-full font-semibold hover:bg-white/40 transition-all duration-300 flex items-center space-x-2"
+        >
+          <svg class="w-5 h-5 group-hover:rotate-12 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
-          <span>{lang === "es" ? "Download CV (EN)" : "Descargar CV (ES)"}</span
-          >
+          <span>{lang === 'es' ? 'Contactarme' : 'Contact Me'}</span>
         </a>
       </div>
 
@@ -126,6 +105,27 @@ const { lang } = Astro.props;
           <div class="text-gray-600">
             {lang === "es" ? "Tecnologías" : "Technologies"}
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <svg
+      class="w-6 h-6 text-gray-400"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24">
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+    </svg>
+  </div>
+</section>
         </div>
       </div>
     </div>
