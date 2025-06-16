@@ -17,32 +17,32 @@ const baseUrl = isSpanish ? "/es" : "";
   id="main-nav">
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex justify-between items-center h-16">
-      <div class="flex items-center space-x-3">
-        <!-- Logo icon - always visible, moves to right when name appears -->
+      <div class="flex items-center space-x-2 relative">
+        <!-- Logo icon - always visible, moves smoothly to the right -->
         <div
           id="nav-logo"
-          class="w-10 h-10 flex items-center justify-center opacity-100 scale-100 transition-all duration-500 transform text-blue-600 order-1">
+          class="w-10 h-10 flex items-center justify-center opacity-100 scale-100 transition-all duration-700 ease-out transform text-blue-600 z-10">
           <FiCode size={28} />
         </div>
         
-        <!-- Avatar in navbar (initially hidden) -->
+        <!-- Avatar in navbar (initially hidden, appears in logo's original position) -->
         <div
           id="nav-avatar"
-          class="w-10 h-10 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-full flex items-center justify-center text-white text-sm font-bold opacity-0 scale-75 transition-all duration-500 transform order-2">
+          class="w-10 h-10 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-full flex items-center justify-center text-white text-sm font-bold opacity-0 scale-75 transition-all duration-500 ease-out transform absolute left-0">
           AQ
         </div>
 
-        <!-- Name/Title in navbar -->
-        <div class="flex flex-col order-3">
+        <!-- Name/Title in navbar (appears after avatar) -->
+        <div class="flex flex-col opacity-0 transition-all duration-600 ease-out transform translate-x-[-20px] ml-2" id="nav-name-container">
           <a
             href={baseUrl || "/"}
             id="nav-title"
-            class="text-lg font-bold text-blue-600 opacity-0 scale-95 transition-all duration-500 transform origin-left">
+            class="text-lg font-bold text-blue-600 transition-all duration-500 transform origin-left">
             Ángel Quiroz
           </a>
           <span
             id="nav-subtitle"
-            class="text-xs text-gray-500 opacity-0 transition-all duration-500 transform translate-y-2">
+            class="text-xs text-gray-500 transition-all duration-500 transform translate-y-2">
             {lang === "es" ? "Ingeniero de Software" : "Software Engineer"}
           </span>
         </div>
@@ -159,42 +159,47 @@ const baseUrl = isSpanish ? "/es" : "";
       const navAvatar = document.getElementById("nav-avatar");
       const navTitle = document.getElementById("nav-title");
       const navSubtitle = document.getElementById("nav-subtitle");
+      const navNameContainer = document.getElementById("nav-name-container");
 
       // Trigger point - when user scrolls past the hero section
       const triggerPoint = window.innerHeight * 0.3; // 30% of viewport height
 
       if (currentScrollY > triggerPoint) {
-        // Show navigation elements
+        // Show navigation elements with smooth animations
         nav?.classList.add("nav-scrolled");
         
-        // Move logo to the end (after name)
-        navLogo?.classList.remove("order-1");
-        navLogo?.classList.add("order-4");
+        // Move logo smoothly to the right (approximately 180px to make space for avatar + name)
+        navLogo?.classList.add("translate-x-[180px]");
         
+        // Show avatar in logo's original position
         navAvatar?.classList.remove("opacity-0", "scale-75");
         navAvatar?.classList.add("opacity-100", "scale-100");
 
-        navTitle?.classList.remove("opacity-0", "scale-95");
-        navTitle?.classList.add("opacity-100", "scale-100");
+        // Show name container
+        navNameContainer?.classList.remove("opacity-0", "translate-x-[-20px]");
+        navNameContainer?.classList.add("opacity-100", "translate-x-0");
 
-        navSubtitle?.classList.remove("opacity-0", "translate-y-2");
-        navSubtitle?.classList.add("opacity-100", "translate-y-0");
+        // Show subtitle
+        navSubtitle?.classList.remove("translate-y-2");
+        navSubtitle?.classList.add("translate-y-0");
       } else {
-        // Hide navigation elements, logo returns to first position
+        // Hide navigation elements and return logo to original position
         nav?.classList.remove("nav-scrolled");
         
-        // Move logo back to beginning
-        navLogo?.classList.remove("order-4");
-        navLogo?.classList.add("order-1");
+        // Move logo back to original position
+        navLogo?.classList.remove("translate-x-[180px]");
         
+        // Hide avatar
         navAvatar?.classList.remove("opacity-100", "scale-100");
         navAvatar?.classList.add("opacity-0", "scale-75");
 
-        navTitle?.classList.remove("opacity-100", "scale-100");
-        navTitle?.classList.add("opacity-0", "scale-95");
+        // Hide name container
+        navNameContainer?.classList.remove("opacity-100", "translate-x-0");
+        navNameContainer?.classList.add("opacity-0", "translate-x-[-20px]");
 
-        navSubtitle?.classList.remove("opacity-100", "translate-y-0");
-        navSubtitle?.classList.add("opacity-0", "translate-y-2");
+        // Hide subtitle
+        navSubtitle?.classList.remove("translate-y-0");
+        navSubtitle?.classList.add("translate-y-2");
       }
 
       lastScrollY = currentScrollY;
@@ -227,13 +232,19 @@ const baseUrl = isSpanish ? "/es" : "";
     #nav-logo,
     #nav-avatar,
     #nav-title,
-    #nav-subtitle {
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    #nav-subtitle,
+    #nav-name-container {
+      transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     
     /* Logo hover effect */
     #nav-logo:hover {
       transform: scale(1.1) rotate(5deg);
+    }
+    
+    /* Preserve hover effect when logo is translated */
+    #nav-logo.translate-x-\[180px\]:hover {
+      transform: translateX(180px) scale(1.1) rotate(5deg);
     }
   </style>
 </nav>
