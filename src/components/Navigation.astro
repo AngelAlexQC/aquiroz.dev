@@ -51,7 +51,7 @@ const baseUrl = isSpanish ? "/es" : "";
         </div>
       </div>
 
-      <div class="hidden md:flex items-center space-x-8">
+      <div class="hidden md:flex items-center space-x-4">
         <a href={`${baseUrl}#about`} class={customClasses.navLink}>
           {lang === "es" ? "Acerca de" : "About"}
         </a>
@@ -63,12 +63,6 @@ const baseUrl = isSpanish ? "/es" : "";
         </a>
         <a href={`${baseUrl}#projects`} class={customClasses.navLink}>
           {lang === "es" ? "Proyectos" : "Projects"}
-        </a>
-        <a href={`${baseUrl}#opensource`} class={customClasses.navLink}>
-          {lang === "es" ? "Open Source" : "Open Source"}
-        </a>
-        <a href={`${baseUrl}#articles`} class={customClasses.navLink}>
-          {lang === "es" ? "Artículos" : "Articles"}
         </a>
         <a href={`${baseUrl}#contact`} class={customClasses.navLink}>
           {lang === "es" ? "Contacto" : "Contact"}
@@ -121,16 +115,6 @@ const baseUrl = isSpanish ? "/es" : "";
           href={`/${lang}/#projects`}
           class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Proyectos" : "Projects"}
-        </a>
-        <a
-          href={`/${lang}/#opensource`}
-          class={`block ${customClasses.navLink} py-2`}>
-          {lang === "es" ? "Open Source" : "Open Source"}
-        </a>
-        <a
-          href={`/${lang}/#articles`}
-          class={`block ${customClasses.navLink} py-2`}>
-          {lang === "es" ? "Artículos" : "Articles"}
         </a>
         <a
           href={`/${lang}/#contact`}
