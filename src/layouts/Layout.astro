@@ -165,40 +165,38 @@ const currentYear = new Date().getFullYear();
     <meta name="twitter:image" content="https://aquiroz.dev/og-image.jpg" />
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">
-      {JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Ángel Quiroz",
-        "alternateName": "Angel Quiroz",
-        "jobTitle": lang === "es" ? "Ingeniero de Software Senior" : "Senior Software Engineer",
-        "description": lang === "es" 
-          ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
-          : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership",
-        "url": "https://aquiroz.dev",
-        "image": "https://aquiroz.dev/logo.svg",
-        "sameAs": [
-          "https://github.com/angelalexqc",
-          "https://www.linkedin.com/in/aquirozdev",
-          "https://dev.to/angelalexqc",
-          "https://twitter.com/aquirozdev"
-        ],
-        "email": "hello@aquiroz.dev",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Freelance"
-        },
-        "nationality": "EC",
-        "knowsAbout": [
-          "JavaScript", "TypeScript", "React", "Node.js", "Laravel", "PHP", 
-          "Angular", "Vue.js", "AWS", "Docker", "DevOps", "Software Architecture"
-        ],
-        "mainEntityOfPage": {
-          "@type": "WebPage",
-          "@id": "https://aquiroz.dev"
-        }
-      })}
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ángel Quiroz",
+      "alternateName": "Angel Quiroz",
+      "jobTitle": lang === "es" ? "Ingeniero de Software Senior" : "Senior Software Engineer",
+      "description": lang === "es" 
+        ? "Ingeniero de Software Senior especializado en desarrollo full-stack, arquitectura y liderazgo técnico"
+        : "Senior Software Engineer specialized in full-stack development, architecture and technical leadership",
+      "url": "https://aquiroz.dev",
+      "image": "https://aquiroz.dev/logo.svg",
+      "sameAs": [
+        "https://github.com/angelalexqc",
+        "https://www.linkedin.com/in/aquirozdev",
+        "https://dev.to/angelalexqc",
+        "https://twitter.com/aquirozdev"
+      ],
+      "email": "hello@aquiroz.dev",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Freelance"
+      },
+      "nationality": "EC",
+      "knowsAbout": [
+        "JavaScript", "TypeScript", "React", "Node.js", "Laravel", "PHP", 
+        "Angular", "Vue.js", "AWS", "Docker", "DevOps", "Software Architecture"
+      ],
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://aquiroz.dev"
+      }
+    })} />
 
     <!-- Alternate languages -->
     <link rel="alternate" hreflang="es" href="https://aquiroz.dev/es" />
