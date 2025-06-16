@@ -1,31 +1,24 @@
 ---
-// Only redirect if no specific locale preference is stored
-// This allows search engines to index the root page properly
-const hasLocalePreference = Astro.cookies.get("locale-preference");
+// Auto-redirect only for first-time visitors
+const hasVisited = Astro.cookies.get("has-visited");
 
-if (!hasLocalePreference) {
-  // Detect user's preferred language only on first visit
+if (!hasVisited) {
   const preferredLocale = Astro.preferredLocale;
-  let redirectLocale = "es"; // default fallback
+  let redirectLocale = "es";
 
-  if (preferredLocale) {
-    if (preferredLocale.startsWith("es")) {
-      redirectLocale = "es";
-    } else {
-      redirectLocale = "en";
-    }
+  if (preferredLocale && !preferredLocale.startsWith("es")) {
+    redirectLocale = "en";
   }
 
-  // Set cookie to remember preference and redirect
-  Astro.cookies.set("locale-preference", redirectLocale, {
-    maxAge: 60 * 60 * 24 * 30, // 30 days
+  Astro.cookies.set("has-visited", "true", {
+    maxAge: 60 * 60 * 24 * 30,
     path: "/",
   });
 
-  return Astro.redirect(`/${redirectLocale}/`, 302); // Temporary redirect
+  return Astro.redirect(`/${redirectLocale}/`, 302);
 }
 
-// If user has visited before, show language selection page
+// For returning visitors and search engines, show full landing page
 ---
 
 <!doctype html>
@@ -35,36 +28,135 @@ if (!hasLocalePreference) {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Ángel Quiroz - Senior Software Engineer</title>
+    <title>
+      Ángel Quiroz - Senior Software Engineer | Full Stack Developer
+    </title>
     <meta
       name="description"
-      content="Senior Software Engineer specializing in Full Stack development, Technical Leadership, and Software Architecture. Choose your preferred language."
+      content="Senior Software Engineer with 7+ years experience in Full Stack development, Technical Leadership, PHP, TypeScript, React, Angular, AWS, Docker. Available for remote roles worldwide."
+    />
+    <meta
+      name="keywords"
+      content="Senior Software Engineer, Full Stack Developer, Technical Lead, PHP, Laravel, TypeScript, NestJS, React, Angular, AWS, Docker"
     />
     <link rel="canonical" href="https://aquiroz.dev/" />
     <link rel="alternate" hreflang="es" href="https://aquiroz.dev/es/" />
     <link rel="alternate" hreflang="en" href="https://aquiroz.dev/en/" />
     <link rel="alternate" hreflang="x-default" href="https://aquiroz.dev/" />
   </head>
-  <body
-    class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex items-center justify-center font-sans">
-    <div class="text-center max-w-md mx-auto p-8">
-      <div class="mb-8">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">Ángel Quiroz</h1>
-        <p class="text-gray-600">Senior Software Engineer</p>
-      </div>
-
-      <div class="space-y-4">
-        <a
-          href="/es/"
-          class="block w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
-          🇪🇸 Español
-        </a>
-        <a
-          href="/en/"
-          class="block w-full bg-gray-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-700 transition-colors">
-          🇺🇸 English
-        </a>
-      </div>
+  <body class="bg-white">
+    <!-- Quick language selector -->
+    <div class="fixed top-4 right-4 z-50 flex gap-2">
+      <a
+        href="/es/"
+        class="bg-blue-600 text-white px-3 py-1 rounded text-sm hover:bg-blue-700 transition-colors"
+        >ES</a
+      >
+      <a
+        href="/en/"
+        class="bg-gray-600 text-white px-3 py-1 rounded text-sm hover:bg-gray-700 transition-colors"
+        >EN</a
+      >
     </div>
+
+    <!-- Hero Section -->
+    <section
+      class="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 flex items-center">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h1 class="text-6xl font-bold text-gray-900 mb-6">Ángel Quiroz</h1>
+        <p class="text-2xl text-gray-700 mb-8 max-w-4xl mx-auto">
+          Senior Software Engineer | Full Stack Developer | Technical Leader
+        </p>
+        <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">
+          7+ years building robust, scalable systems. Specialized in PHP,
+          TypeScript, React, Angular, AWS, and DevOps. Leading teams and
+          delivering high-impact solutions worldwide.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+          <a
+            href="/cv-en.pdf"
+            download
+            class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+            Download CV
+          </a>
+          <a
+            href="mailto:angel@aquiroz.dev"
+            class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 hover:text-white transition-colors">
+            Contact Me
+          </a>
+        </div>
+
+        <!-- Key Skills -->
+        <div class="grid md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          <div class="text-center">
+            <h3 class="font-semibold text-gray-900 mb-2">Backend</h3>
+            <p class="text-gray-600 text-sm">
+              PHP, Laravel, TypeScript, NestJS, Node.js
+            </p>
+          </div>
+          <div class="text-center">
+            <h3 class="font-semibold text-gray-900 mb-2">Frontend</h3>
+            <p class="text-gray-600 text-sm">React, Next.js, Angular, Vue.js</p>
+          </div>
+          <div class="text-center">
+            <h3 class="font-semibold text-gray-900 mb-2">DevOps</h3>
+            <p class="text-gray-600 text-sm">
+              Docker, AWS, CI/CD, GitHub Actions
+            </p>
+          </div>
+          <div class="text-center">
+            <h3 class="font-semibold text-gray-900 mb-2">Leadership</h3>
+            <p class="text-gray-600 text-sm">
+              Technical Lead, Architecture, Mentoring
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Experience -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-12">
+          Professional Experience
+        </h2>
+        <div class="space-y-8">
+          <div class="border-l-4 border-blue-600 pl-6">
+            <h3 class="text-xl font-bold">Technical Lead - Libélula Soft</h3>
+            <p class="text-gray-600">Feb 2024 - Present</p>
+            <p class="text-gray-700 mt-2">
+              Leading enterprise systems development in PHP (Yii2), API design,
+              and DevOps automation. Managing teams of 5+ developers.
+            </p>
+          </div>
+          <div class="border-l-4 border-purple-600 pl-6">
+            <h3 class="text-xl font-bold">Freelance Full Stack Engineer</h3>
+            <p class="text-gray-600">May 2019 - Present</p>
+            <p class="text-gray-700 mt-2">
+              Developing custom solutions with NestJS, React, and cloud
+              infrastructure for clients in the US, Mexico, and Ecuador.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <p>&copy; 2024 Ángel Quiroz. All rights reserved.</p>
+        <div class="mt-4 space-x-4">
+          <a
+            href="mailto:angel@aquiroz.dev"
+            class="text-blue-400 hover:text-blue-300">Email</a
+          >
+          <a
+            href="https://linkedin.com/in/aquirozdev"
+            class="text-blue-400 hover:text-blue-300">LinkedIn</a
+          >
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
