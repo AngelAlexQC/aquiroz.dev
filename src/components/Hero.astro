@@ -9,66 +9,60 @@ const { lang } = Astro.props;
 ---
 
 <section
-  class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center overflow-hidden">
+  class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center">
   <!-- Background Elements -->
   <div
     class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
   </div>
-  <div
-    class="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full blur-3xl animate-float">
-  </div>
-  <div
-    class="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-r from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-float"
-    style="animation-delay: -3s;">
-  </div>
 
   <div class="relative max-w-7xl mx-auto px-4 py-20">
     <div class="text-center">
-      <!-- Avatar -->
-      <div class="relative mx-auto w-32 h-32 mb-8 animate-fade-up">
+      <!-- Enhanced Avatar with status indicator -->
+      <div class="relative mx-auto w-36 h-36 mb-8 animate-fade-up">
+        <!-- Main avatar -->
         <div
-          class="w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl">
-          AQ
+          class="w-full h-full bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-full flex items-center justify-center text-white text-4xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 cursor-pointer group">
+          <span class="group-hover:scale-110 transition-transform duration-300">AQ</span>
         </div>
-        <div
-          class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg">
+        
+        <!-- Status indicator with pulse -->
+        <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-white shadow-lg">
+          <div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
         </div>
       </div>
 
-      <!-- Name -->
+      <!-- Enhanced Title with better typography -->
       <h1
-        class="text-6xl md:text-7xl font-bold mb-4 animate-fade-up"
+        class="text-6xl md:text-8xl font-bold mb-6 animate-fade-up leading-tight"
         style="animation-delay: 0.2s;">
-        <span class="gradient-text">Ángel</span>
-        <span class="text-gray-900">Quiroz</span>
+        <span class="gradient-text hover:scale-105 inline-block transition-transform duration-300 cursor-default">Ángel</span>
+        <span class="text-gray-900 hover:text-gray-700 transition-colors duration-300 cursor-default">Quiroz</span>
       </h1>
 
-      <!-- Title with typing effect -->
-      <div class="h-16 mb-8 animate-fade-up" style="animation-delay: 0.4s;">
-        <p class="text-xl md:text-2xl text-gray-600 font-medium">
-          <span class="font-mono text-blue-600">&gt;</span>
-          {t('hero.title', lang)}
-          <span class="animate-pulse">|</span>
+      <!-- Simplified subtitle -->
+      <div class="mb-8 animate-fade-up" style="animation-delay: 0.4s;">
+        <p class="text-xl md:text-2xl text-gray-600 font-medium mb-3">
+          <span class="font-mono text-blue-600 text-2xl">&gt;</span>
+          <span class="ml-2">{lang === "es" ? "Ingeniero de Software Senior" : "Senior Software Engineer"}</span>
+          <span class="animate-pulse text-blue-600 ml-1">|</span>
         </p>
-        <p class="text-lg text-gray-500 mt-2">
-          {
-            lang === "es"
-              ? "Backend, Frontend & Arquitectura"
-              : "Backend, Frontend & Architecture"
-          }
+        <p class="text-lg text-gray-500">
+          {lang === "es" ? "Especialista en Full Stack & Arquitectura de Software" : "Full Stack & Software Architecture Specialist"}
         </p>
       </div>
 
-      <!-- CTA Buttons -->
+      <!-- Enhanced CTA Buttons with better styling -->
       <div
-        class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-up"
+        class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-up mb-16"
         style="animation-delay: 0.6s;">
         <a
           href={lang === 'es' ? '/cv-es.pdf' : '/cv-en.pdf'}
           download
-          class="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+          class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white px-10 py-5 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-3 overflow-hidden">
+          <!-- Hover effect overlay -->
+          <div class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
           <svg
-            class="w-5 h-5 group-hover:rotate-12 transition-transform"
+            class="w-6 h-6 group-hover:rotate-12 transition-transform relative z-10"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24">
@@ -79,14 +73,14 @@ const { lang } = Astro.props;
               d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
             ></path>
           </svg>
-          <span>{t('hero.download_cv', lang)}</span>
+          <span class="relative z-10">{t('hero.download_cv', lang)}</span>
         </a>
 
         <a
-          href="mailto:angel@aquiroz.dev"
-          class="group glass-effect text-gray-700 px-8 py-4 rounded-full font-semibold hover:bg-white/40 transition-all duration-300 flex items-center space-x-2">
+          href="#contact"
+          class="group relative glass-effect text-gray-700 px-10 py-5 rounded-full font-semibold hover:bg-white/50 transition-all duration-300 flex items-center space-x-3 border border-white/30 hover:border-white/60">
           <svg
-            class="w-5 h-5 group-hover:rotate-12 transition-transform"
+            class="w-6 h-6 group-hover:rotate-12 transition-transform"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24">
@@ -94,70 +88,101 @@ const { lang } = Astro.props;
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
             ></path>
           </svg>
           <span>{t('hero.contact_me', lang)}</span>
         </a>
       </div>
 
-      <!-- Stats -->
+      <!-- Subtle Stats -->
       <div
-        class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-up"
+        class="flex justify-center items-center space-x-8 md:space-x-12 text-sm text-gray-500 animate-fade-up"
         style="animation-delay: 0.8s;">
         <div class="text-center">
-          <div class="text-3xl font-bold gradient-text">7+</div>
-          <div class="text-gray-600">
-            {lang === "es" ? "Años de Experiencia" : "Years Experience"}
-          </div>
+          <span class="font-semibold text-blue-600">7+</span>
+          <span class="ml-1">{lang === "es" ? "años exp." : "years exp."}</span>
         </div>
+        <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
         <div class="text-center">
-          <div class="text-3xl font-bold gradient-text">50+</div>
-          <div class="text-gray-600">
-            {lang === "es" ? "Proyectos Completados" : "Projects Completed"}
-          </div>
+          <span class="font-semibold text-purple-600">50+</span>
+          <span class="ml-1">{lang === "es" ? "proyectos" : "projects"}</span>
         </div>
+        <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
         <div class="text-center">
-          <div class="text-3xl font-bold gradient-text">15+</div>
-          <div class="text-gray-600">
-            {lang === "es" ? "Tecnologías" : "Technologies"}
-          </div>
+          <span class="font-semibold text-pink-600">15+</span>
+          <span class="ml-1">{lang === "es" ? "tecnologías" : "technologies"}</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
+  <!-- Enhanced Scroll indicator -->
   <div
-    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-    <svg
-      class="w-6 h-6 text-gray-400"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24">
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-    </svg>
+    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce cursor-pointer group"
+    onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+    <div class="bg-white/20 backdrop-blur-sm rounded-full p-3 group-hover:bg-white/30 transition-all duration-300">
+      <svg
+        class="w-6 h-6 text-gray-600 group-hover:text-gray-800 transition-colors"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+      </svg>
+    </div>
   </div>
 </section>
 
-<!-- Scroll indicator -->
-<div
-  class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-  <svg
-    class="w-6 h-6 text-gray-400"
-    fill="none"
-    stroke="currentColor"
-    viewBox="0 0 24 24">
-    <path
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      stroke-width="2"
-      d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-  </svg>
-</div>
-  </svg>
-</div>
+<style>
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+
+  /* Intersection Observer setup */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-up {
+      opacity: 0;
+    }
+  }
+</style>
