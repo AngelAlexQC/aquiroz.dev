@@ -1,5 +1,6 @@
 ---
 import Navigation from "../components/Navigation.astro";
+import { customClasses } from "../utils/colors";
 import "../styles/global.css";
 export interface Props {
   title: string;
@@ -45,7 +46,12 @@ const otherLangPath = isSpanish ? "/" : "/es";
       }
 
       .gradient-text {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(
+          135deg,
+          #2563eb 0%,
+          #7c3aed 50%,
+          #ec4899 100%
+        );
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;

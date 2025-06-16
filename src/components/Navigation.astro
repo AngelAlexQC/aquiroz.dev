@@ -1,5 +1,6 @@
 ---
-import { FiCode } from 'react-icons/fi';
+import { FiCode } from "react-icons/fi";
+import { colors, customClasses } from "../utils/colors";
 
 export interface Props {
   lang: "es" | "en";
@@ -21,72 +22,62 @@ const baseUrl = isSpanish ? "/es" : "";
         <!-- Logo icon - always visible, moves smoothly to the right -->
         <div
           id="nav-logo"
-          class="w-10 h-10 flex items-center justify-center opacity-100 scale-100 transition-all duration-700 ease-out transform text-blue-600 z-10">
+          class={`w-10 h-10 flex items-center justify-center opacity-100 scale-100 transition-all duration-700 ease-out transform ${colors.text.primary} z-10`}>
           <FiCode size={28} />
         </div>
-        
+
         <!-- Avatar in navbar (initially hidden, appears in logo's original position) -->
         <div
           id="nav-avatar"
-          class="w-10 h-10 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 rounded-full flex items-center justify-center text-white text-sm font-bold opacity-0 scale-75 transition-all duration-500 ease-out transform absolute left-0">
+          class={`w-10 h-10 ${colors.gradients.avatar} rounded-full flex items-center justify-center ${colors.text.white} text-sm font-bold opacity-0 scale-75 transition-all duration-500 ease-out transform absolute left-0`}>
           AQ
         </div>
 
         <!-- Name/Title in navbar (appears after avatar) -->
-        <div class="flex flex-col opacity-0 transition-all duration-600 ease-out transform translate-x-[-20px] ml-2" id="nav-name-container">
+        <div
+          class="flex flex-col opacity-0 transition-all duration-600 ease-out transform translate-x-[-20px] ml-2"
+          id="nav-name-container">
           <a
             href={baseUrl || "/"}
             id="nav-title"
-            class="text-lg font-bold text-blue-600 transition-all duration-500 transform origin-left">
+            class={`text-lg font-bold ${colors.text.primary} transition-all duration-500 transform origin-left`}>
             Ángel Quiroz
           </a>
           <span
             id="nav-subtitle"
-            class="text-xs text-gray-500 transition-all duration-500 transform translate-y-2">
+            class={`text-xs ${colors.text.muted} transition-all duration-500 transform translate-y-2`}>
             {lang === "es" ? "Ingeniero de Software" : "Software Engineer"}
           </span>
         </div>
       </div>
 
       <div class="hidden md:flex items-center space-x-8">
-        <a
-          href={`${baseUrl}#about`}
-          class="text-gray-700 hover:text-blue-600 transition-colors">
+        <a href={`${baseUrl}#about`} class={customClasses.navLink}>
           {lang === "es" ? "Acerca de" : "About"}
         </a>
-        <a
-          href={`${baseUrl}#experience`}
-          class="text-gray-700 hover:text-blue-600 transition-colors">
+        <a href={`${baseUrl}#experience`} class={customClasses.navLink}>
           {lang === "es" ? "Experiencia" : "Experience"}
         </a>
-        <a
-          href={`${baseUrl}#skills`}
-          class="text-gray-700 hover:text-blue-600 transition-colors">
+        <a href={`${baseUrl}#skills`} class={customClasses.navLink}>
           {lang === "es" ? "Aptitudes" : "Skills"}
         </a>
-        <a
-          href={`${baseUrl}#projects`}
-          class="text-gray-700 hover:text-blue-600 transition-colors">
+        <a href={`${baseUrl}#projects`} class={customClasses.navLink}>
           {lang === "es" ? "Proyectos" : "Projects"}
         </a>
-        <a
-          href={`${baseUrl}#contact`}
-          class="text-gray-700 hover:text-blue-600 transition-colors">
+        <a href={`${baseUrl}#contact`} class={customClasses.navLink}>
           {lang === "es" ? "Contacto" : "Contact"}
         </a>
 
         <a
           href={switchUrl}
-          class="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
+          class={`${colors.bg.primary} ${colors.text.white} px-3 py-1 rounded-md text-sm ${colors.hover.primaryBg} transition-colors`}>
           {lang === "es" ? "EN" : "ES"}
         </a>
       </div>
 
       <!-- Mobile menu button -->
       <div class="md:hidden">
-        <button
-          id="mobile-menu-button"
-          class="text-gray-700 hover:text-blue-600">
+        <button id="mobile-menu-button" class={customClasses.navLink}>
           <svg
             class="w-6 h-6"
             fill="none"
@@ -107,32 +98,32 @@ const baseUrl = isSpanish ? "/es" : "";
       <div class="space-y-2">
         <a
           href={`/${lang}/#about`}
-          class="block text-gray-700 hover:text-blue-600 py-2">
+          class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Acerca de" : "About"}
         </a>
         <a
           href={`/${lang}/#experience`}
-          class="block text-gray-700 hover:text-blue-600 py-2">
+          class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Experiencia" : "Experience"}
         </a>
         <a
           href={`/${lang}/#skills`}
-          class="block text-gray-700 hover:text-blue-600 py-2">
+          class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Aptitudes" : "Skills"}
         </a>
         <a
           href={`/${lang}/#projects`}
-          class="block text-gray-700 hover:text-blue-600 py-2">
+          class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Proyectos" : "Projects"}
         </a>
         <a
           href={`/${lang}/#contact`}
-          class="block text-gray-700 hover:text-blue-600 py-2">
+          class={`block ${customClasses.navLink} py-2`}>
           {lang === "es" ? "Contacto" : "Contact"}
         </a>
         <a
           href={switchUrl}
-          class="block bg-blue-600 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors w-fit">
+          class={`block ${colors.bg.primary} ${colors.text.white} px-3 py-2 rounded-md text-sm ${colors.hover.primaryBg} transition-colors w-fit`}>
           {lang === "es" ? "EN" : "ES"}
         </a>
       </div>
@@ -167,10 +158,10 @@ const baseUrl = isSpanish ? "/es" : "";
       if (currentScrollY > triggerPoint) {
         // Show navigation elements with smooth animations
         nav?.classList.add("nav-scrolled");
-        
+
         // Move logo smoothly to the right (approximately 180px to make space for avatar + name)
         navLogo?.classList.add("translate-x-[180px]");
-        
+
         // Show avatar in logo's original position
         navAvatar?.classList.remove("opacity-0", "scale-75");
         navAvatar?.classList.add("opacity-100", "scale-100");
@@ -185,10 +176,10 @@ const baseUrl = isSpanish ? "/es" : "";
       } else {
         // Hide navigation elements and return logo to original position
         nav?.classList.remove("nav-scrolled");
-        
+
         // Move logo back to original position
         navLogo?.classList.remove("translate-x-[180px]");
-        
+
         // Hide avatar
         navAvatar?.classList.remove("opacity-100", "scale-100");
         navAvatar?.classList.add("opacity-0", "scale-75");
@@ -236,12 +227,12 @@ const baseUrl = isSpanish ? "/es" : "";
     #nav-name-container {
       transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
-    
+
     /* Logo hover effect */
     #nav-logo:hover {
       transform: scale(1.1) rotate(5deg);
     }
-    
+
     /* Preserve hover effect when logo is translated */
     #nav-logo.translate-x-\[180px\]:hover {
       transform: translateX(180px) scale(1.1) rotate(5deg);
