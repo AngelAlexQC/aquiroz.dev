@@ -5,66 +5,50 @@ export interface Props {
 
 const { lang } = Astro.props;
 const currentPath = Astro.url.pathname;
-const otherLang = lang === "es" ? "en" : "es";
-const switchUrl = currentPath.replace(`/${lang}`, `/${otherLang}`);
+const isSpanish = currentPath === "/es" || currentPath === "/es/";
+const switchUrl = isSpanish ? "/" : "/es";
+const baseUrl = isSpanish ? "/es" : "";
 ---
 
-<nav class="glass-effect fixed w-full top-0 z-50 border-b border-white/20">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="flex justify-between items-center h-20">
+<nav class="bg-white shadow-sm fixed w-full top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center h-16">
       <div class="flex items-center">
-        <a
-          href={`/${lang}/`}
-          class="text-2xl font-bold gradient-text hover:scale-105 transition-transform">
-          &lt;AQ/&gt;
+        <a href={baseUrl || "/"} class="text-xl font-bold text-blue-600">
+          Ángel Quiroz
         </a>
       </div>
 
       <div class="hidden md:flex items-center space-x-8">
         <a
-          href={`/${lang}/#about`}
-          class="relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group">
+          href={`${baseUrl}#about`}
+          class="text-gray-700 hover:text-blue-600 transition-colors">
           {lang === "es" ? "Acerca de" : "About"}
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"
-          ></span>
         </a>
         <a
-          href={`/${lang}/#experience`}
-          class="relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group">
+          href={`${baseUrl}#experience`}
+          class="text-gray-700 hover:text-blue-600 transition-colors">
           {lang === "es" ? "Experiencia" : "Experience"}
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"
-          ></span>
         </a>
         <a
-          href={`/${lang}/#skills`}
-          class="relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group">
+          href={`${baseUrl}#skills`}
+          class="text-gray-700 hover:text-blue-600 transition-colors">
           {lang === "es" ? "Aptitudes" : "Skills"}
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"
-          ></span>
         </a>
         <a
-          href={`/${lang}/#projects`}
-          class="relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group">
+          href={`${baseUrl}#projects`}
+          class="text-gray-700 hover:text-blue-600 transition-colors">
           {lang === "es" ? "Proyectos" : "Projects"}
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"
-          ></span>
         </a>
         <a
-          href={`/${lang}/#contact`}
-          class="relative text-gray-700 hover:text-blue-600 transition-all duration-300 py-2 group">
+          href={`${baseUrl}#contact`}
+          class="text-gray-700 hover:text-blue-600 transition-colors">
           {lang === "es" ? "Contacto" : "Contact"}
-          <span
-            class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 group-hover:w-full transition-all duration-300"
-          ></span>
         </a>
 
         <a
           href={switchUrl}
-          class="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
+          class="bg-blue-600 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-700 transition-colors">
           {lang === "es" ? "EN" : "ES"}
         </a>
       </div>
@@ -126,6 +110,30 @@ const switchUrl = currentPath.replace(`/${lang}`, `/${otherLang}`);
     </div>
   </div>
 </nav>
+
+<script>
+  document
+    .getElementById("mobile-menu-button")
+    ?.addEventListener("click", () => {
+      const menu = document.getElementById("mobile-menu");
+      menu?.classList.toggle("hidden");
+    });
+</script>
+<a
+  href={`/${lang}/#projects`}
+  class="block text-gray-700 hover:text-blue-600 py-2">
+  {lang === "es" ? "Proyectos" : "Projects"}
+</a>
+<a
+  href={`/${lang}/#contact`}
+  class="block text-gray-700 hover:text-blue-600 py-2">
+  {lang === "es" ? "Contacto" : "Contact"}
+</a>
+<a
+  href={switchUrl}
+  class="block bg-blue-600 text-white px-3 py-2 rounded-md text-sm hover:bg-blue-700 transition-colors w-fit">
+  {lang === "es" ? "EN" : "ES"}
+</a>
 
 <script>
   document
