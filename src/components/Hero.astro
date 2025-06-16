@@ -11,10 +11,19 @@ const yearsOfExperience = calculateYearsOfExperience();
 ---
 
 <section
-  class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center">
-  <!-- Background Elements -->
-  <div
-    class="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+  class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center relative overflow-hidden">
+  <!-- Background Elements mejorados -->
+  <div class="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-indigo-100/40 to-purple-100/60"></div>
+  
+  <!-- Elementos de fondo sutiles -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Orbs de color suaves -->
+    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-300/40 to-cyan-300/35 rounded-full blur-xl animate-float-slow"></div>
+    <div class="absolute top-40 right-20 w-48 h-48 bg-gradient-to-r from-purple-300/30 to-pink-300/25 rounded-full blur-2xl animate-float-slower"></div>
+    <div class="absolute bottom-40 left-20 w-40 h-40 bg-gradient-to-r from-indigo-300/35 to-blue-300/30 rounded-full blur-xl animate-float-reverse"></div>
+    
+    <!-- Grid sutil de fondo -->
+    <div class="absolute inset-0 bg-grid-pattern opacity-[0.04]"></div>
   </div>
 
   <div class="relative max-w-7xl mx-auto px-4 py-20">
@@ -251,5 +260,71 @@ const yearsOfExperience = calculateYearsOfExperience();
 
   .animate-float {
     animation: float-enhanced 8s ease-in-out infinite;
+  }
+
+  /* Nuevas animaciones para elementos de fondo */
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    25% {
+      transform: translateY(-20px) translateX(10px);
+    }
+    50% {
+      transform: translateY(-15px) translateX(-5px);
+    }
+    75% {
+      transform: translateY(-25px) translateX(5px);
+    }
+  }
+
+  @keyframes float-slower {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) scale(1);
+    }
+    33% {
+      transform: translateY(-30px) translateX(-15px) scale(1.1);
+    }
+    66% {
+      transform: translateY(-10px) translateX(20px) scale(0.9);
+    }
+  }
+
+  @keyframes float-reverse {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+    }
+    50% {
+      transform: translateY(20px) translateX(-10px);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 12s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 15s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 10s ease-in-out infinite reverse;
+  }
+
+  /* Grid pattern sutil */
+  .bg-grid-pattern {
+    background-image: 
+      linear-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Mejoras responsive para los orbs */
+  @media (max-width: 768px) {
+    .animate-float-slow,
+    .animate-float-slower,
+    .animate-float-reverse {
+      animation-duration: 8s;
+    }
   }
 </style>
