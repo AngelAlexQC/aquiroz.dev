@@ -1,9 +1,15 @@
 ---
+import { getPackageStats } from "../lib/getPackageStats";
+
 export interface Props {
   lang: "es" | "en";
 }
 
 const { lang } = Astro.props;
+
+// Obtener estadísticas reales del paquete NPM
+const packageName = "ec-dni-validator";
+const packageStats = await getPackageStats(packageName);
 
 const openSourceProjects = [
   {
@@ -14,10 +20,10 @@ const openSourceProjects = [
     url: "https://www.npmjs.com/package/ec-dni-validator",
     github: "https://github.com/angelalexqc/ec-dni-validator",
     stats: {
-      weekly: 70,
-      monthly: 414,
-      yearly: 3131,
-      total: 4525
+      weekly: packageStats.weeklyDownloads,
+      monthly: packageStats.monthlyDownloads,
+      yearly: packageStats.yearlyDownloads,
+      total: packageStats.totalDownloads
     },
     tags: ["JavaScript", "TypeScript", "NPM", "Validation"],
     featured: true

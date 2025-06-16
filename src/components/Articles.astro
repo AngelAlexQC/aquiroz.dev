@@ -1,48 +1,24 @@
 ---
+import { getArticles, type Article } from "../lib/getArticles";
+
 export interface Props {
   lang: "es" | "en";
 }
 
 const { lang } = Astro.props;
 
-const articles = [
-  {
-    title: "Installing Multiple Versions of PHP on Ubuntu, Debian (also WSL)",
-    date: new Date('2024-05-04'),
-    description: lang === 'es' 
-      ? "Guía completa para instalar múltiples versiones de PHP en sistemas Ubuntu/Debian, incluyendo WSL."
-      : "Complete guide to installing multiple PHP versions on Ubuntu/Debian systems, including WSL.",
-    url: "https://dev.to/angelalexqc/installing-multiple-versions-of-php-on-ubuntu-debian-also-wsl-5hjp",
-    tags: ["PHP", "Ubuntu", "DevOps", "WSL"]
-  },
-  {
-    title: "Simple Internationalization (i18n) for Next.js (App Router)",
-    date: new Date('2023-09-21'),
-    description: lang === 'es'
-      ? "Implementación simple de traducciones usando Server Actions y cookies en Next.js 13."
-      : "Simple implementation for translations using Server Actions and cookies in Next.js 13.",
-    url: "https://dev.to/angelalexqc/simple-internationalization-i18n-for-nextjs-app-router-with-server-actions-and-cookies-2n27",
-    tags: ["Next.js", "i18n", "React", "TypeScript"]
-  },
-  {
-    title: "Building a Rock-Solid Angular CI/CD Pipeline with GitLab",
-    date: new Date('2023-04-26'),
-    description: lang === 'es'
-      ? "Guía paso a paso para crear pipelines CI/CD robustos con GitLab para aplicaciones Angular."
-      : "Step-by-step guide to building robust CI/CD pipelines with GitLab for Angular applications.",
-    url: "https://dev.to/angelalexqc/building-a-rock-solid-angular-cicd-pipeline-with-gitlab-a-step-by-step-guide-1fjl",
-    tags: ["Angular", "GitLab", "CI/CD", "DevOps"]
-  },
-  {
-    title: "Using next-i18next & NextAuth.js in the same NextJS app",
-    date: new Date('2022-04-17'),
-    description: lang === 'es'
-      ? "Tutorial para integrar autenticación e internacionalización en aplicaciones Next.js."
-      : "Tutorial to integrate authentication and internationalization in Next.js applications.",
-    url: "https://dev.to/angelalexqc/using-next-i18next-nextauthjs-in-the-same-nextjs-app-5k5",
-    tags: ["Next.js", "NextAuth", "i18next", "Authentication"]
-  }
-];
+// Obtener artículos dinámicamente desde dev.to API
+const allArticles = await getArticles();
+
+// Tomar solo los primeros 4 artículos más recientes
+const articles = allArticles.slice(0, 4).map((article: Article) => ({
+  title: article.title,
+  date: new Date(article.published_at),
+  description: article.description,
+  url: article.url,
+  tags: article.tag_list.slice(0, 4), // Limitar a 4 tags
+  readingTime: article.reading_time_minutes
+}));
 
 const formatDate = (date: Date) => {
   return date.toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', {
@@ -74,17 +50,22 @@ const formatDate = (date: Date) => {
             <time class="text-sm text-blue-600 font-medium">
               {formatDate(article.date)}
             </time>
-            <a 
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-blue-600 hover:text-blue-800 transition-colors"
-              aria-label={lang === "es" ? "Leer artículo completo" : "Read full article"}
-            >
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-              </svg>
-            </a>
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-gray-500">
+                {article.readingTime} {lang === "es" ? "min" : "min"}
+              </span>
+              <a 
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-blue-600 hover:text-blue-800 transition-colors"
+                aria-label={lang === "es" ? "Leer artículo completo" : "Read full article"}
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                </svg>
+              </a>
+            </div>
           </div>
           
           <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2">
