@@ -1,4 +1,5 @@
 ---
+import { t } from "../utils/translations";
 import { getPackageStats } from "../lib/getPackageStats";
 
 export interface Props {
@@ -39,13 +40,10 @@ const formatNumber = (num: number) => {
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-        {lang === "es" ? "Proyectos Open Source" : "Open Source Projects"}
+        {t('opensource.title', lang)}
       </h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        {lang === "es" 
-          ? "Contribuyo a la comunidad desarrollando herramientas útiles y bibliotecas de código abierto"
-          : "I contribute to the community by developing useful tools and open source libraries"
-        }
+        {t('opensource.description', lang)}
       </p>
     </div>
 

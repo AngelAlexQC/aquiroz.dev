@@ -1,4 +1,6 @@
 ---
+import { t } from "../utils/translations";
+
 export interface Props {
   lang: "es" | "en";
 }
@@ -35,21 +37,17 @@ const { lang } = Astro.props;
             d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
           ></path>
         </svg>
-        {lang === "es" ? "Hablemos" : "Let's talk"}
+        {t('contact.lets_talk', lang)}
       </div>
       <h2 class="text-5xl font-bold text-gray-900 mb-6">
-        {lang === "es" ? "Conectemos" : "Get in "}
+        {t('contact.connect', lang)}
         <span
           class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-          {lang === "es" ? "Juntos" : "Touch"}
+          {t('contact.together', lang)}
         </span>
       </h2>
       <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-        {
-          lang === "es"
-            ? "Estoy disponible para roles remotos senior y de liderazgo técnico a nivel mundial. ¿Tienes un proyecto interesante? ¡Hablemos!"
-            : "I'm currently open to full-time remote senior and technical leadership roles worldwide. Have an interesting project? Let's talk!"
-        }
+        {t('contact.description', lang)}
       </p>
     </div>
 
@@ -84,7 +82,7 @@ const { lang } = Astro.props;
             aquirozdev@gmail.com
           </p>
           <p class="text-gray-500 text-sm mt-2">
-            {lang === "es" ? "Respuesta en 24h" : "24h response"}
+            {t('contact.response_24h', lang)}
           </p>
         </div>
       </a>
@@ -113,7 +111,7 @@ const { lang } = Astro.props;
             @aquirozdev
           </p>
           <p class="text-gray-500 text-sm mt-2">
-            {lang === "es" ? "Red profesional" : "Professional network"}
+            {t('contact.professional_network', lang)}
           </p>
         </div>
       </a>
@@ -138,14 +136,10 @@ const { lang } = Astro.props;
           </svg>
         </div>
         <h3 class="text-2xl font-bold text-gray-900 mb-4">
-          {lang === "es" ? "¿Listo para colaborar?" : "Ready to collaborate?"}
+          {t('contact.ready_collaborate', lang)}
         </h3>
         <p class="text-gray-600 max-w-2xl mx-auto">
-          {
-            lang === "es"
-              ? "Siempre estoy buscando nuevos desafíos y oportunidades para crear soluciones innovadoras. ¡No dudes en contactarme!"
-              : "I'm always looking for new challenges and opportunities to create innovative solutions. Don't hesitate to reach out!"
-          }
+          {t('contact.cta_description', lang)}
         </p>
       </div>
 
@@ -165,7 +159,7 @@ const { lang } = Astro.props;
               d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
             ></path>
           </svg>
-          {lang === "es" ? "Enviar Email" : "Send Email"}
+          {t('contact.send_email', lang)}
         </a>
 
         <a
@@ -185,7 +179,7 @@ const { lang } = Astro.props;
               d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
             ></path>
           </svg>
-          {lang === "es" ? "Agendar Reunión" : "Schedule Meeting"}
+          {t('contact.schedule_meeting', lang)}
         </a>
       </div>
     </div>

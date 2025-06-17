@@ -1,6 +1,7 @@
 ---
 import { FiCode } from "react-icons/fi";
 import { colors, customClasses } from "../utils/colors";
+import { t } from "../utils/translations";
 
 export interface Props {
   lang: "es" | "en";
@@ -17,7 +18,7 @@ const baseUrl = isSpanish ? "/es" : "";
   class="bg-white bg-opacity-80 backdrop-blur-md shadow-sm fixed w-full top-0 z-50 transition-all duration-300"
   id="main-nav"
   role="navigation"
-  aria-label={lang === "es" ? "Navegación principal" : "Main navigation"}>
+  aria-label={t('nav.aria_label', lang)}>
   <div class="max-w-6xl mx-auto px-4">
     <div class="flex justify-between items-center h-16">
       <!-- Logo y nombre -->
@@ -49,7 +50,7 @@ const baseUrl = isSpanish ? "/es" : "";
             <span
               id="nav-subtitle"
               class={`text-xs ${colors.text.muted} transition-all duration-500 transform translate-y-2`}>
-              {lang === "es" ? "Ingeniero de Software" : "Software Engineer"}
+              {t('nav.software_engineer', lang)}
             </span>
           </div>
         </a>
@@ -58,26 +59,26 @@ const baseUrl = isSpanish ? "/es" : "";
       <!-- Navigation Links Desktop -->
       <div class="hidden md:flex items-center space-x-1 relative">
         <a href={`${baseUrl}#about`} class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 rounded-lg relative z-10" data-section="about">
-          {lang === "es" ? "Acerca de" : "About"}
+          {t('nav.about', lang)}
         </a>
         <a href={`${baseUrl}#experience`} class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 rounded-lg relative z-10" data-section="experience">
-          {lang === "es" ? "Experiencia" : "Experience"}
+          {t('nav.experience', lang)}
         </a>
         <a href={`${baseUrl}#skills`} class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 rounded-lg relative z-10" data-section="skills">
-          {lang === "es" ? "Aptitudes" : "Skills"}
+          {t('nav.skills', lang)}
         </a>
         <a href={`${baseUrl}#projects`} class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 rounded-lg relative z-10" data-section="projects">
-          {lang === "es" ? "Proyectos" : "Projects"}
+          {t('nav.projects', lang)}
         </a>
         <a href={`${baseUrl}#contact`} class="nav-link px-4 py-2 text-gray-700 hover:text-blue-600 transition-all duration-300 rounded-lg relative z-10" data-section="contact">
-          {lang === "es" ? "Contacto" : "Contact"}
+          {t('nav.contact', lang)}
         </a>
 
         <!-- Language Switch -->
         <a
           href={switchUrl}
           class={`ml-4 ${colors.bg.primary} ${colors.text.white} px-3 py-1 rounded-md text-sm ${colors.hover.primaryBg} transition-colors`}>
-          {lang === "es" ? "EN" : "ES"}
+          {t('nav.language_switch', lang)}
         </a>
       </div>
 
@@ -95,22 +96,22 @@ const baseUrl = isSpanish ? "/es" : "";
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="space-y-2">
         <a href={`${baseUrl}#about`} class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="about">
-          {lang === "es" ? "Acerca de" : "About"}
+          {t('nav.about', lang)}
         </a>
         <a href={`${baseUrl}#experience`} class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="experience">
-          {lang === "es" ? "Experiencia" : "Experience"}
+          {t('nav.experience', lang)}
         </a>
         <a href={`${baseUrl}#skills`} class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="skills">
-          {lang === "es" ? "Aptitudes" : "Skills"}
+          {t('nav.skills', lang)}
         </a>
         <a href={`${baseUrl}#projects`} class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="projects">
-          {lang === "es" ? "Proyectos" : "Projects"}
+          {t('nav.projects', lang)}
         </a>
         <a href={`${baseUrl}#contact`} class="mobile-nav-link block px-3 py-2 text-gray-700 hover:text-blue-600 transition-colors duration-300" data-section="contact">
-          {lang === "es" ? "Contacto" : "Contact"}
+          {t('nav.contact', lang)}
         </a>
         <a href={switchUrl} class={`block ${colors.bg.primary} ${colors.text.white} px-3 py-2 rounded-md text-sm ${colors.hover.primaryBg} transition-colors w-fit mt-4`}>
-          {lang === "es" ? "EN" : "ES"}
+          {t('nav.language_switch', lang)}
         </a>
       </div>
     </div>

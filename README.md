@@ -102,7 +102,7 @@ Este es un proyecto personal, pero siéntete libre de:
 
 ## 📞 Contacto
 
-- **Email**: hello@aquiroz.dev
+- **Email**: angel@aquiroz.dev
 - **LinkedIn**: [aquirozdev](https://www.linkedin.com/in/aquirozdev)
 - **GitHub**: [angelalexqc](https://github.com/angelalexqc)
 - **Blog**: [dev.to/angelalexqc](https://dev.to/angelalexqc)

@@ -1,7 +1,6 @@
 ---
 import { t } from "../utils/translations";
 import { calculateYearsOfExperience } from "../utils/dates";
-import { useEffect, useState } from 'react';
 
 export interface Props {
   lang: "es" | "en";
@@ -40,7 +39,7 @@ const yearsOfExperience = calculateYearsOfExperience();
 
 <section
   class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center relative overflow-hidden"
-  aria-label={lang === "es" ? "Sección principal de presentación" : "Main hero presentation section"}>
+  aria-label={t('hero.aria_label', lang)}>
   <!-- Background Elements mejorados -->
   <div class="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-indigo-100/40 to-purple-100/60"></div>
   
@@ -99,20 +98,12 @@ const yearsOfExperience = calculateYearsOfExperience();
         <p class="text-xl md:text-2xl text-gray-600 font-medium mb-3">
           <span class="font-mono text-blue-600 text-2xl">&gt;</span>
           <span class="ml-2"
-            >{
-              lang === "es"
-                ? "Ingeniero de Software Senior"
-                : "Senior Software Engineer"
-            }</span
+            >{t('hero.senior_software_engineer', lang)}</span
           >
           <span class="animate-pulse text-blue-600 ml-1">|</span>
         </p>
         <p class="text-lg text-gray-500">
-          {
-            lang === "es"
-              ? "Especialista en Full Stack & Arquitectura de Software"
-              : "Full Stack & Software Architecture Specialist"
-          }
+          {t('hero.fullstack_specialist', lang)}
         </p>
       </div>
 
@@ -123,7 +114,7 @@ const yearsOfExperience = calculateYearsOfExperience();
         <a
           href={lang === "es" ? "/cv-es.pdf" : "/cv-en.pdf"}
           download
-          aria-label={lang === "es" ? "Descargar currículum vitae en formato PDF" : "Download resume in PDF format"}
+          aria-label={t('hero.cv_aria_label', lang)}
           class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white px-10 py-5 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-3 overflow-hidden">
           <!-- Hover effect overlay -->
           <div
@@ -146,7 +137,7 @@ const yearsOfExperience = calculateYearsOfExperience();
 
         <a
           href="#contact"
-          aria-label={lang === "es" ? "Ir a la sección de contacto" : "Go to contact section"}
+          aria-label={t('hero.contact_aria_label', lang)}
           class="group relative glass-effect text-gray-700 px-10 py-5 rounded-full font-semibold hover:bg-white/50 transition-all duration-300 flex items-center space-x-3 border border-white/30 hover:border-white/60">
           <svg
             class="w-6 h-6 group-hover:rotate-12 transition-transform"
@@ -170,7 +161,7 @@ const yearsOfExperience = calculateYearsOfExperience();
         style="animation-delay: 0.8s;">
         <div class="text-center">
           <span class="font-semibold text-blue-600">{yearsOfExperience}+</span>
-          <span class="ml-1">{lang === "es" ? "años de experiencia" : "years of experience"}</span>
+          <span class="ml-1">{t('hero.years_experience', lang)}</span>
         </div>
       </div>
     </div>
