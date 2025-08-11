@@ -12,44 +12,52 @@ const yearsOfExperience = calculateYearsOfExperience();
 
 <!-- CSS crítico para el avatar en línea -->
 <style is:inline>
-/* Estilos mínimos para el avatar y el LCP */
-#hero-avatar {
-  background: linear-gradient(to right, #2563eb, #8b5cf6, #4338ca);
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-size: 2.25rem;
-  font-weight: bold;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  width: 9rem;
-  height: 9rem;
-}
-#hero-avatar span {
-  transition: transform 0.3s;
-}
-#hero-avatar.animated span {
-  /* Solo animar después del primer render */
-}
-#hero-avatar.animated:hover span {
-  transform: scale(1.10);
-}
+  /* Estilos mínimos para el avatar y el LCP */
+  #hero-avatar {
+    background: linear-gradient(to right, #2563eb, #8b5cf6, #4338ca);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 2.25rem;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    width: 9rem;
+    height: 9rem;
+  }
+  #hero-avatar span {
+    transition: transform 0.3s;
+  }
+  #hero-avatar.animated span {
+    /* Solo animar después del primer render */
+  }
+  #hero-avatar.animated:hover span {
+    transform: scale(1.1);
+  }
 </style>
 
 <section
   class="pt-16 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 min-h-screen flex items-center relative overflow-hidden"
-  aria-label={t('hero.aria_label', lang)}>
+  aria-label={t("hero.aria_label", lang)}>
   <!-- Background Elements mejorados -->
-  <div class="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-indigo-100/40 to-purple-100/60"></div>
-  
+  <div
+    class="absolute inset-0 bg-gradient-to-br from-blue-100/60 via-indigo-100/40 to-purple-100/60">
+  </div>
+
   <!-- Elementos de fondo sutiles -->
   <div class="absolute inset-0 pointer-events-none">
     <!-- Orbs de color suaves -->
-    <div class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-300/40 to-cyan-300/35 rounded-full blur-xl animate-float-slow"></div>
-    <div class="absolute top-40 right-20 w-48 h-48 bg-gradient-to-r from-purple-300/30 to-pink-300/25 rounded-full blur-2xl animate-float-slower"></div>
-    <div class="absolute bottom-40 left-20 w-40 h-40 bg-gradient-to-r from-indigo-300/35 to-blue-300/30 rounded-full blur-xl animate-float-reverse"></div>
-    
+    <div
+      class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-blue-300/40 to-cyan-300/35 rounded-full blur-xl animate-float-slow">
+    </div>
+    <div
+      class="absolute top-40 right-20 w-48 h-48 bg-gradient-to-r from-purple-300/30 to-pink-300/25 rounded-full blur-2xl animate-float-slower">
+    </div>
+    <div
+      class="absolute bottom-40 left-20 w-40 h-40 bg-gradient-to-r from-indigo-300/35 to-blue-300/30 rounded-full blur-xl animate-float-reverse">
+    </div>
+
     <!-- Grid sutil de fondo -->
     <div class="absolute inset-0 bg-grid-pattern opacity-[0.04]"></div>
   </div>
@@ -61,10 +69,7 @@ const yearsOfExperience = calculateYearsOfExperience();
         class="relative mx-auto w-36 h-36 mb-8 animate-fade-up"
         id="hero-avatar-container">
         <!-- Main avatar -->
-        <div
-          id="hero-avatar"
-          class="w-full h-full group"
-        >
+        <div id="hero-avatar" class="w-full h-full group">
           <span>AQ</span>
         </div>
 
@@ -81,8 +86,7 @@ const yearsOfExperience = calculateYearsOfExperience();
       <h1
         id="hero-title"
         class="text-6xl md:text-8xl font-bold mb-6 animate-fade-up leading-tight"
-        style="animation-delay: 0.2s; font-size: 3.75rem;"
-      >
+        style="animation-delay: 0.2s; font-size: 3.75rem;">
         <span
           class="gradient-text hover:scale-105 inline-block transition-transform duration-300 cursor-default"
           >Ángel</span
@@ -97,13 +101,11 @@ const yearsOfExperience = calculateYearsOfExperience();
       <div class="mb-8 animate-fade-up" style="animation-delay: 0.4s;">
         <p class="text-xl md:text-2xl text-gray-600 font-medium mb-3">
           <span class="font-mono text-blue-600 text-2xl">&gt;</span>
-          <span class="ml-2"
-            >{t('hero.senior_software_engineer', lang)}</span
-          >
+          <span class="ml-2">{t("hero.senior_software_engineer", lang)}</span>
           <span class="animate-pulse text-blue-600 ml-1">|</span>
         </p>
         <p class="text-lg text-gray-500">
-          {t('hero.fullstack_specialist', lang)}
+          {t("hero.fullstack_specialist", lang)}
         </p>
       </div>
 
@@ -112,9 +114,9 @@ const yearsOfExperience = calculateYearsOfExperience();
         class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-fade-up mb-16"
         style="animation-delay: 0.6s;">
         <a
-          href={lang === "/cv-en.pdf"}
+          href={"/cv-en.pdf"}
           download
-          aria-label={t('hero.cv_aria_label', lang)}
+          aria-label={t("hero.cv_aria_label", lang)}
           class="group relative bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-700 text-white px-10 py-5 rounded-full font-semibold shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center space-x-3 overflow-hidden">
           <!-- Hover effect overlay -->
           <div
@@ -137,7 +139,7 @@ const yearsOfExperience = calculateYearsOfExperience();
 
         <a
           href="#contact"
-          aria-label={t('hero.contact_aria_label', lang)}
+          aria-label={t("hero.contact_aria_label", lang)}
           class="group relative glass-effect text-gray-700 px-10 py-5 rounded-full font-semibold hover:bg-white/50 transition-all duration-300 flex items-center space-x-3 border border-white/30 hover:border-white/60">
           <svg
             class="w-6 h-6 group-hover:rotate-12 transition-transform"
@@ -161,7 +163,7 @@ const yearsOfExperience = calculateYearsOfExperience();
         style="animation-delay: 0.8s;">
         <div class="text-center">
           <span class="font-semibold text-blue-600">{yearsOfExperience}+</span>
-          <span class="ml-1">{t('hero.years_experience', lang)}</span>
+          <span class="ml-1">{t("hero.years_experience", lang)}</span>
         </div>
       </div>
     </div>
@@ -286,7 +288,8 @@ const yearsOfExperience = calculateYearsOfExperience();
 
   /* Nuevas animaciones para elementos de fondo */
   @keyframes float-slow {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px);
     }
     25% {
@@ -301,7 +304,8 @@ const yearsOfExperience = calculateYearsOfExperience();
   }
 
   @keyframes float-slower {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px) scale(1);
     }
     33% {
@@ -313,7 +317,8 @@ const yearsOfExperience = calculateYearsOfExperience();
   }
 
   @keyframes float-reverse {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) translateX(0px);
     }
     50% {
@@ -335,8 +340,10 @@ const yearsOfExperience = calculateYearsOfExperience();
 
   /* Grid pattern sutil */
   .bg-grid-pattern {
-    background-image: 
-      linear-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+    background-image: linear-gradient(
+        rgba(99, 102, 241, 0.15) 1px,
+        transparent 1px
+      ),
       linear-gradient(90deg, rgba(99, 102, 241, 0.15) 1px, transparent 1px);
     background-size: 50px 50px;
   }
@@ -352,8 +359,8 @@ const yearsOfExperience = calculateYearsOfExperience();
 </style>
 
 <script is:inline>
-// Añadir la clase 'animated' después del primer renderizado para evitar animación en el LCP
-window.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('hero-avatar')?.classList.add('animated');
-});
+  // Añadir la clase 'animated' después del primer renderizado para evitar animación en el LCP
+  window.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("hero-avatar")?.classList.add("animated");
+  });
 </script>
